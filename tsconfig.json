@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./build",
+
+    "strict": true,
+
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+
+    "resolveJsonModule": true,
+
+    "declaration": true,
+
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "es2015",
+    ]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "vc4sm-frontend",
+  "version": "0.1.0",
+  "description": "A frontend for an API that provides education verifiable credentials to university students.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node-dev ./src/index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterTheOne/vc4sm-frontend.git"
+  },
+  "keywords": [
+    "education",
+    "ssi",
+    "vc",
+    "did",
+    "credentials",
+    "university"
+  ],
+  "author": "Peter Grassberger <p.grassberger@student.tugraz.at> (https://petergrassberger.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PeterTheOne/vc4sm-frontend/issues"
+  },
+  "homepage": "https://github.com/PeterTheOne/vc4sm-frontend#readme",
+  "dependencies": {
+    "lit-element": "^2.4.0"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0",
+    "typescript": "^4.0.5"
+  }
+}
