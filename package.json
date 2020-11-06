@@ -2,11 +2,15 @@
   "name": "vc4sm-frontend",
   "version": "0.1.0",
   "description": "A frontend for an API that provides education verifiable credentials to university students.",
-  "main": "index.ts",
   "scripts": {
-    "start": "ts-node-dev ./src/index.ts",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently --kill-others --names tsc,web-dev-server \"npm run tsc:watch\" \"web-dev-server --app-index index.html --node-resolve --open --watch\"",
+    "tsc:watch": "tsc --watch",
+    "lint:eslint": "eslint --ext .ts,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .ts,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" \"**/*.ts\" --write --ignore-path .gitignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier"
   },
   "repository": {
     "type": "git",
@@ -26,11 +30,46 @@
     "url": "https://github.com/PeterTheOne/vc4sm-frontend/issues"
   },
   "homepage": "https://github.com/PeterTheOne/vc4sm-frontend#readme",
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
   "dependencies": {
-    "lit-element": "^2.4.0"
+    "dbp-common": "file:../toolkit/packages/common",
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0"
   },
   "devDependencies": {
-    "ts-node-dev": "^1.0.0",
-    "typescript": "^4.0.5"
+    "eslint": "^6.1.0",
+    "@open-wc/eslint-config": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "prettier": "^2.0.4",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^1.0.0",
+    "lint-staged": "^10.0.0",
+    "@types/node": "13.11.1",
+    "@web/dev-server": "^0.0.12",
+    "typescript": "~4.0.3",
+    "concurrently": "^5.1.0",
+    "tslib": "^1.11.0"
   }
 }

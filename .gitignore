@@ -1,2 +1,11 @@
-node_modules
-build
+## npm
+/node_modules/
+/npm-debug.log
+
+## testing
+/coverage/
+
+# build
+/_site/
+/dist/
+/out-tsc/

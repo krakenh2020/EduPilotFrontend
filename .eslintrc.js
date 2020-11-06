@@ -1,50 +1,20 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-  },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:@typescript-eslint/recommended'
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
+  root: true,
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 11,
-    sourceType: 'module',
-  },
-  plugins: [
-    'react',
-    '@typescript-eslint',
+  plugins: ['@typescript-eslint', 'import', 'html'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
   ],
   rules: {
-    'no-console': 0,
-    'no-use-before-define': 0,
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        'ts': 'never',
-      }
-    ],
-    'max-len': ["error", { "code": 120 }],
-    'react/no-unused-state': 0,
+    // disable the rule for all files
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'import/named': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': ['error', 'always', { ignorePackages: true }],
   },
-  settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts'],
-    },
-    'import/resolver': {
-      'node': {
-        'extensions': [
-          '.ts',
-          '.d.ts',
-        ]
-      },
-    },
-  }
 };

@@ -6,6 +6,22 @@ a frontend for an API that provides education verifiable credentials to universi
 Part of the **Verifiable Credentials for Student Mobility** project funded by TU Graz 
 as a technologically enhanced administration (TEA) marketplace project.
 
+Quickstart
+----------
+
+To get started:
+
+```sh
+npm ci
+```
+
+Scripts
+-------
+
+- `start` runs your app for development, reloading on file changes
+- `lint` runs the linter for your project
+
+todo: build command https://open-wc.org/docs/building/overview/
 
 license
 -------
