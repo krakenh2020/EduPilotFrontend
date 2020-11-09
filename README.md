@@ -26,7 +26,12 @@ todo: build command https://open-wc.org/docs/building/overview/
 license
 -------
 
-MIT License, Copyright (c) 2020 Peter Grassberger
+LGPL-3.0-or-later License, Copyright (c) 2020 Peter Grassberger
+
+Peter Grassberger <p.grassberger@student.tugraz.at> is the Author.
+
+TU Graz has exclusive right of use and the right to grant usage rights and does so as `LGPL-3.0-or-later`,
+also see agreement in german below.
 
 > Der/Die Auftragnehmer/in überträgt der TU Graz an den von ihm/ihr erzielten
   Arbeitsergebnissen sämtliche wie immer gearteten unbeschränkten,
