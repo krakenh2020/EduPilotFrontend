@@ -2,6 +2,10 @@
   "name": "vc4sm-frontend",
   "version": "0.1.0",
   "description": "A frontend for an API that provides education verifiable credentials to university students.",
+  "private": true,
+  "workspaces": [
+    "vendor/toolkit/packages/*"
+  ],
   "scripts": {
     "start": "concurrently --kill-others --names tsc,web-dev-server \"npm run tsc:watch\" \"web-dev-server --app-index index.html --node-resolve --open --watch\"",
     "tsc:watch": "tsc --watch",
@@ -53,23 +57,25 @@
     ]
   },
   "dependencies": {
-    "dbp-common": "file:../toolkit/packages/common",
+    "dbp-app-shell": "^1.0.0",
+    "dbp-common": "^1.0.0",
     "lit-element": "^2.0.1",
     "lit-html": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
     "@open-wc/eslint-config": "^4.0.0",
+    "@types/node": "13.11.1",
     "@typescript-eslint/eslint-plugin": "^2.20.0",
     "@typescript-eslint/parser": "^2.20.0",
-    "prettier": "^2.0.4",
+    "@web/dev-server": "^0.0.12",
+    "concurrently": "^5.1.0",
+    "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.1",
     "husky": "^1.0.0",
     "lint-staged": "^10.0.0",
-    "@types/node": "13.11.1",
-    "@web/dev-server": "^0.0.12",
-    "typescript": "~4.0.3",
-    "concurrently": "^5.1.0",
-    "tslib": "^1.11.0"
+    "prettier": "^2.0.4",
+    "tslib": "^1.11.0",
+    "typescript": "~4.0.3"
   }
 }

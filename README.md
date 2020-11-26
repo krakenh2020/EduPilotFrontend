@@ -12,8 +12,12 @@ Quickstart
 To get started:
 
 ```sh
-npm ci
+git submodule update --init
+
+yarn install
 ```
+
+dbp/web-components/toolkit is not yet a public git repository nor is a published on npmjs.org .
 
 Scripts
 -------
