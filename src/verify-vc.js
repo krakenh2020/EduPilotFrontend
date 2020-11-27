@@ -5,6 +5,7 @@ import * as commonUtils from '@dbp-toolkit/common/utils';
 import {Icon} from '@dbp-toolkit/common';
 import * as commonStyles from '@dbp-toolkit/common/styles';
 import DBPLitElement from '@dbp-toolkit/common/dbp-lit-element';
+import {QrCodeScanner} from "@dbp-toolkit/qr-code-scanner";
 
 const i18n = createI18nInstance();
 
@@ -17,7 +18,8 @@ class VerifyVc extends ScopedElementsMixin(DBPLitElement) {
 
     static get scopedElements() {
         return {
-          'dbp-icon': Icon,
+            'dbp-icon': Icon,
+            'dbp-code-scanner': QrCodeScanner
         };
     }
 
@@ -52,11 +54,15 @@ class VerifyVc extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
+    // todo: upload?
     // todo: confirmation screen
     render() {
         return html`
-            *upload or scan*
-            
+            <dbp-code-scanner
+                lang="${this.lang}"
+                @scan-started="${(e) => console.log('scan-started', e)}"
+                @code-detected="${(e) => console.log('code-detected', e)}"
+            ></dbp-code-scanner>
         `;
     }
 }
