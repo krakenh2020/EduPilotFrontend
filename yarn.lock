@@ -4377,6 +4377,11 @@ qr-scanner@^1.2.0:
   resolved "https://registry.yarnpkg.com/qr-scanner/-/qr-scanner-1.2.0.tgz#845a263d167a06f6d4aaebd5b2f66b64ba460c86"
   integrity sha512-oTuOxV/UT0O1BMyNCoWusd8B8/Za4zNvDWxTN54+s0mRvnavU0OjQiwI2o3HCuXUVGO88Ee9yY9qjrt8yUYaSw==
 
+qrjs@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/qrjs/-/qrjs-0.1.2.tgz#a2cdfc169125be40aca412210f9bb583d06ee9cf"
+  integrity sha1-os38FpElvkCspBIhD5u1g9Bu6c8=
+
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
@@ -5479,6 +5484,13 @@ void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
+
+webcomponent-qr-code@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/webcomponent-qr-code/-/webcomponent-qr-code-1.0.5.tgz#79c86d69459d4ed1a6654bd4c726075c87a5268e"
+  integrity sha512-uLulSj2nUe8HvhsuXSy8NySz3YPikpA2oIVrv15a4acNoiAdpickMFw5wSgFp7kxEb0twT/wC5VozZQHZhsZIw==
+  dependencies:
+    qrjs "^0.1.2"
 
 webdav@^3.6.1:
   version "3.6.1"

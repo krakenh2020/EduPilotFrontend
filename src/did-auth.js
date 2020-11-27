@@ -5,6 +5,7 @@ import * as commonUtils from '@dbp-toolkit/common/utils';
 import {Icon} from '@dbp-toolkit/common';
 import * as commonStyles from '@dbp-toolkit/common/styles';
 import DBPLitElement from '@dbp-toolkit/common/dbp-lit-element';
+import QRCode from "webcomponent-qr-code/qr-code";
 
 const i18n = createI18nInstance();
 
@@ -17,7 +18,8 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
 
     static get scopedElements() {
         return {
-          'dbp-icon': Icon,
+            'dbp-icon': Icon,
+            'dbp-qr-code': QRCode
         };
     }
 
@@ -59,7 +61,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
               *select method?*
             </p>
             
-            <img src="#" alt="Authentication QR Code" /><br />
+            <dbp-qr-code data="hello world!" format="svg" modulesize="10" margin="1"></dbp-qr-code><br />
             
             Scan me...<br />
             
