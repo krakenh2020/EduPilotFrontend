@@ -52,10 +52,10 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
+    // todo: maybe derive diploma and grades from the same activity
     render() {
         return html`
-
-            hallo
+            *same as diploma just with grades*
         `;
     }
 }

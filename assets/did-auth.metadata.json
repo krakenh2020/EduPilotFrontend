@@ -3,12 +3,12 @@
   "module_src": "did-auth.js",
   "routing_name": "did-auth",
   "name": {
-    "de": "DID Authentifizierung",
-    "en": "DID Authentication"
+    "de": "Verify your Identity",
+    "en": "Verify your Identity"
   },
   "short_name": {
-    "de": "DID Auth",
-    "en": "DID Auth"
+    "de": "Verify your Identity",
+    "en": "Verify your Identity"
   },
   "description": {
     "de": "Dies ist eine Starter Activity für den Digital Blueprint.",

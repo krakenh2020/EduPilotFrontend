@@ -52,10 +52,18 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
+    // todo: confirmation screen
     render() {
         return html`
-
-            hallo
+            <p>
+              *select method?*
+            </p>
+            
+            <img src="#" alt="Authentication QR Code" /><br />
+            
+            Scan me...<br />
+            
+            with a SSI Wallet: *list of wallets*
         `;
     }
 }

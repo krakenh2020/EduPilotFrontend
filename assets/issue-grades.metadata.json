@@ -3,12 +3,12 @@
   "module_src": "issue-grades.js",
   "routing_name": "issue-grades",
   "name": {
-    "de": "Issue Grades",
-    "en": "Issue Grades"
+    "de": "Export Grades",
+    "en": "Export Grades"
   },
   "short_name": {
-    "de": "Issue Grades",
-    "en": "Issue Grades"
+    "de": "Export Grades",
+    "en": "Export Grades"
   },
   "description": {
     "de": "Dies ist eine Starter Activity für den Digital Blueprint.",

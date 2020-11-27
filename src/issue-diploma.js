@@ -52,10 +52,15 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
+    // todo: maybe derive diploma and grades from the same activity
+    // todo: check for login
+    // todo: check if did auth is done
+    // todo: modal with vc qr code
     render() {
         return html`
-
-            hallo
+            *list of diplomas if any*
+            
+            *select format, select schema*
         `;
     }
 }

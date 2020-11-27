@@ -3,12 +3,12 @@
   "module_src": "verify-vc.js",
   "routing_name": "verify-vc",
   "name": {
-    "de": "Verify",
-    "en": "Verify"
+    "de": "Verify Credential",
+    "en": "Verify Credential"
   },
   "short_name": {
-    "de": "Verify",
-    "en": "Verify"
+    "de": "Verify Credential",
+    "en": "Verify Credential"
   },
   "description": {
     "de": "Dies ist eine Starter Activity für den Digital Blueprint.",

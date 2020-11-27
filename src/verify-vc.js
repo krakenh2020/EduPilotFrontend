@@ -52,10 +52,11 @@ class VerifyVc extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
+    // todo: confirmation screen
     render() {
         return html`
-
-            hallo
+            *upload or scan*
+            
         `;
     }
 }
