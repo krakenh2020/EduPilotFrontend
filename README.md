@@ -6,35 +6,41 @@ a frontend for an API that provides education verifiable credentials to universi
 Part of the **Verifiable Credentials for Student Mobility** project funded by TU Graz 
 as a technologically enhanced administration (TEA) marketplace project.
 
-Quickstart
-----------
+local development
+-----------------
 
-To get started:
-
-```sh
+```bash
+# get the source
+git clone git@gitlab.tugraz.at:dbp//web-components/dbp-starter-app.git
+cd dbp-starter-app
 git submodule update --init
 
+# install dependencies
 yarn install
+
+# constantly build dist/bundle.js and run a local web-server on port 8001 
+yarn run watch
+
+# same as watch, but with babel, terser, etc active -> very slow
+yarn run watch-full
+
+# run tests
+yarn test
+
+# build for deployment
+yarn build
 ```
 
-dbp/web-components/toolkit is not yet a public git repository nor is a published on npmjs.org .
-
-Scripts
--------
-
-- `start` runs your app for development, reloading on file changes
-- `lint` runs the linter for your project
-
-todo: build command https://open-wc.org/docs/building/overview/
+Jump to <https://localhost:8001> and you should get a Single Sign On login page.
 
 license
 -------
 
-LGPL-3.0-or-later License, Copyright (c) 2020 Peter Grassberger
+LGPL-2.1-or-later License, Copyright (c) 2020 Peter Grassberger
 
 Peter Grassberger <p.grassberger@student.tugraz.at> is the Author.
 
-TU Graz has exclusive right of use and the right to grant usage rights and does so as `LGPL-3.0-or-later`,
+TU Graz has exclusive right of use and the right to grant usage rights and does so as `LGPL-2.1-or-later`,
 also see agreement in german below.
 
 > Der/Die Auftragnehmer/in überträgt der TU Graz an den von ihm/ihr erzielten

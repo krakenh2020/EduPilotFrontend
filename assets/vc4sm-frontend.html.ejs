@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<% if (environment === "local") { -%>
+    <!-- XXX: Disable adoptedStyleSheets so that lit-element doesn't use it and we can edit CSS in the Chrome dev tools -->
+    <script>
+        delete Document.prototype.adoptedStyleSheets;
+    </script>
+<% } -%>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" type="image/x-icon" href="<%= getPrivateUrl('icon/favicon.ico') %>">
+    <link rel="icon" type="image/svg+xml" href="<%= getPrivateUrl('icon/favicon.svg') %>" sizes="any">
+
+    <!-- PWA manfiest file -->
+    <link rel="manifest" href="<%= getUrl(name + '.manifest.json') %>">
+
+    <!-- PWA iphone -->
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= getPrivateUrl('icon/apple-touch-icon.png') %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= getPrivateUrl('icon/favicon-32x32.png') %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= getPrivateUrl('icon/favicon-16x16.png') %>">
+    <link rel="mask-icon" href="<%= getPrivateUrl('icon/safari-pinned-tab.svg') %>" color="#e4154b">
+
+    <!-- PWA Windows -->
+    <meta name="msapplication-config" content="<%= getUrl(name + '.browserconfig.xml') %>">
+
+    <!-- Loading spinner -->
+    <script type="module">
+        import {Spinner} from '<%= getPrivateUrl('spinner.js') %>';
+        customElements.define('dbp-loading-spinner', Spinner);
+    </script>
+
+    <!-- App bundles-->
+    <script type="module" src="<%= getUrl(name + '.js') %>"></script>
+
+    <!-- Prevent Chrome/Edge from suggesting to translate the page -->
+    <meta name="google" content="notranslate">
+
+    <!-- Preload fonts -->
+    <link rel="preload" href="<%= getPrivateUrl('fonts/SourceSansPro-Light.otf.woff2') %>" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<%= getPrivateUrl('fonts/SourceSansPro-Regular.otf.woff2') %>" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<%= getPrivateUrl('fonts/SourceSansPro-Semibold.otf.woff2') %>" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="<%= getPrivateUrl('fonts/SourceSansPro-Bold.otf.woff2') %>" as="font" type="font/woff2" crossorigin>
+
+    <!-- Font related CSS -->
+    <style>
+        body {
+            font-family: 'Source Sans Pro', 'Calibri', 'Arial', 'sans-serif';
+            font-weight: 300;
+            margin: 0;
+        }
+
+        @font-face {
+            font-family: 'Source Sans Pro';
+            font-weight: 300;
+            src: url('<%= getPrivateUrl('fonts/SourceSansPro-Light.otf.woff2') %>') format('woff2');
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Source Sans Pro';
+            font-weight: 400;
+            src: url('<%= getPrivateUrl('fonts/SourceSansPro-Regular.otf.woff2') %>') format('woff2');
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Source Sans Pro';
+            font-weight: 600;
+            src: url('<%= getPrivateUrl('fonts/SourceSansPro-Semibold.otf.woff2') %>') format('woff2');
+            font-display: block;
+        }
+
+        @font-face {
+            font-family: 'Source Sans Pro';
+            font-weight: 700;
+            src: url('<%= getPrivateUrl('fonts/SourceSansPro-Bold.otf.woff2') %>') format('woff2');
+            font-display: block;
+        }
+
+        /* TU-Graz style override */
+        html {
+            --dbp-override-primary-bg-color: #245b78;
+            --dbp-override-primary-button-border: solid 1px #245b78;
+            --dbp-override-info-bg-color: #245b78;
+            --dbp-override-danger-bg-color: #e4154b;
+            --dbp-override-warning-bg-color: #ffe183;
+            --dbp-override-warning-text-color: black;
+            --dbp-override-success-bg-color: #259207;
+        }
+    </style>
+
+    <!-- Preloading/Preconnecting -->
+    <link rel="preconnect" href="<%= entryPointURL %>">
+    <link rel="preconnect" href="<%= keyCloakBaseURL %>">
+    <script type="module" src="<%= keyCloakBaseURL %>/js/keycloak.min.js"></script>
+</head>
+
+<body>
+<<%= name %>
+    lang="de"
+    src="<%= getUrl(name + '.topic.metadata.json') %>"
+    entry-point-url="<%= entryPointURL %>"
+    base-path="<%= getUrl('') %>"
+    keycloak-config='{"url": "<%= keyCloakBaseURL %>", "realm": "tugraz", "clientId": "<%= keyCloakClientId %>", "silentCheckSsoRedirectUri": "<%= getUrl('silent-check-sso.html') %>" }'
+    matomo-url="<%= matomoUrl %>"
+    matomo-site-id="<%= matomoSiteId %>"
+    shell-name="Digital Blueprint"
+    shell-subname="Digitale Projekte"
+    no-brand
+><!--<dbp-loading-spinner></dbp-loading-spinner></<%= name %>>-->
+
+<!-- Error handling for too old browsers -->
+<script src="<%= getPrivateUrl('browser-check.js') %>" defer></script>
+<noscript>Diese Applikation benötigt Javascript / This application requires Javascript</noscript>
+</body>
+</html>

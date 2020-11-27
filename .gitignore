@@ -1,11 +1,8 @@
-## npm
+dist
 node_modules
-/npm-debug.log
-
-## testing
-/coverage/
-
-# build
-/_site/
-/dist/
-/out-tsc/
+.idea
+npm-debug.log
+.vscode
+.cert
+package-lock.json
+yarn-error.log
