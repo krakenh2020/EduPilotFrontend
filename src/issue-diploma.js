@@ -2,7 +2,7 @@ import {createI18nInstance} from './i18n.js';
 import {css, html} from 'lit-element';
 import {ScopedElementsMixin} from '@open-wc/scoped-elements';
 import * as commonUtils from '@dbp-toolkit/common/utils';
-import {Icon} from '@dbp-toolkit/common';
+import {Button, Icon} from '@dbp-toolkit/common';
 import * as commonStyles from '@dbp-toolkit/common/styles';
 import DBPLitElement from '@dbp-toolkit/common/dbp-lit-element';
 
@@ -17,7 +17,8 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
 
     static get scopedElements() {
         return {
-          'dbp-icon': Icon,
+            'dbp-icon': Icon,
+            'dbp-button': Button,
         };
     }
 
@@ -47,20 +48,47 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
         // language=css
         return css`
             ${commonStyles.getThemeCSS()}
-
             
+            ul {
+              list-style: none;
+              padding: 0;
+            }
+            
+            ul li {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 1rem;
+            }
         `;
+    }
+
+    export() {
+        console.log('export');
     }
 
     // todo: maybe derive diploma and grades from the same activity
     // todo: check for login
     // todo: check if did auth is done
+    // todo: fetch list of diplomas
     // todo: modal with vc qr code
+    // todo: select format, select schema
     render() {
+        const diplomas = [
+          'Bachelor of Science in Engineering',
+          'Bachelor of Arts'
+        ];
+
+        const diplomaList = diplomas.map((d) => html`
+            <li>
+                ${d}
+                <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export()}" />
+            </li>
+        `);
+
         return html`
-            *list of diplomas if any*
-            
-            *select format, select schema*
+            <ul>
+                ${diplomaList}
+            </ul>
         `;
     }
 }
