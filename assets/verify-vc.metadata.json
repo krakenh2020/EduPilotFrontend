@@ -1,0 +1,17 @@
+{
+  "element": "verify-vc",
+  "module_src": "verify-vc.js",
+  "routing_name": "verify-vc",
+  "name": {
+    "de": "Verify",
+    "en": "Verify"
+  },
+  "short_name": {
+    "de": "Verify",
+    "en": "Verify"
+  },
+  "description": {
+    "de": "Dies ist eine Starter Activity für den Digital Blueprint.",
+    "en": "This is a starter activity for the digital blueprint."
+  }
+}
