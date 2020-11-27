@@ -1,35 +1,38 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="300.000000pt" height="300.000000pt" viewBox="0 0 300.000000 300.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.11, written by Peter Selinger 2001-2013
-</metadata>
-<g transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M212 2928 c-5 -7 -13 -122 -17 -259 l-7 -245 26 -31 c44 -52 190 -73
-339 -49 55 9 131 21 170 26 108 16 144 28 183 62 46 41 70 90 85 172 16 97 5
-185 -31 235 -45 62 -56 65 -210 57 -235 -11 -382 -24 -393 -35 -5 -5 -7 -17
--4 -25 8 -20 87 -21 317 -2 246 20 265 9 264 -159 0 -72 -5 -101 -24 -144 -35
--79 -46 -82 -385 -133 -121 -17 -266 9 -280 52 -3 10 -1 75 5 145 14 174 13
-318 -2 333 -15 15 -23 15 -36 0z"/>
-<path d="M820 2046 c-10 -13 -10 -19 0 -31 10 -12 36 -15 115 -15 70 0 106 -4
-113 -12 5 -7 17 -40 27 -72 9 -33 30 -92 46 -133 54 -137 74 -280 56 -401 l-8
--54 43 -43 c79 -79 242 -108 475 -86 195 19 331 65 387 131 31 37 35 97 10
-175 -8 28 -19 88 -25 133 -5 46 -16 96 -24 111 -57 111 -261 184 -784 278
--182 33 -410 43 -431 19z m446 -81 c343 -56 607 -134 685 -204 39 -35 40 -39
-49 -121 5 -47 16 -107 25 -134 8 -27 15 -68 15 -92 0 -54 -34 -85 -123 -113
--120 -36 -182 -45 -347 -45 -147 -1 -172 1 -231 22 -108 37 -104 31 -101 174
-3 111 0 134 -27 233 -16 61 -43 147 -60 193 -17 46 -31 88 -31 93 0 13 36 11
-146 -6z"/>
-<path d="M1923 949 c-38 -24 -41 -41 -14 -60 23 -16 36 -112 47 -349 4 -89 11
--155 20 -171 33 -65 153 -138 317 -194 169 -57 464 -108 530 -91 34 8 84 52
-104 90 30 58 14 302 -33 499 -13 54 -25 77 -61 117 -109 122 -263 161 -641
-164 -114 1 -214 5 -222 9 -9 4 -28 -2 -47 -14z m625 -78 c121 -26 217 -73 254
--126 49 -72 105 -440 79 -525 -16 -54 -52 -80 -110 -80 -60 0 -222 25 -327 50
--161 38 -388 142 -414 190 -8 16 -32 339 -34 465 l-1 40 55 7 c103 12 398 0
-498 -21z"/>
-</g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 100 100.00096"
+   version="1.1"
+   width="100"
+   height="100"
+   xml:space="preserve"
+   id="int-header-logo-img"><metadata
+     id="metadata35"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs33" /><g
+     id="g28"
+     transform="matrix(1.25,0,0,-1.25,-6.7752613e-4,100.00096)"><g
+       id="g26"
+       transform="scale(0.1)"><g
+         transform="translate(68.08042,192.54384)"
+         id="g3745"><path
+           style="fill:#e4154b"
+           d="M 0,103.73 H 207.45 V 311.19 L 0,311.2 Z"
+           id="path2" /><path
+           style="fill:#e4154b"
+           d="M 228.19,103.73 H 435.65 V 311.19 H 228.19 Z"
+           id="path4" /><path
+           style="fill:#e4154b"
+           d="M 456.41,103.73 H 663.85 V 311.19 H 456.41 Z"
+           id="path6" /><path
+           style="fill:#e4154b"
+           d="M 103.72,0 H 311.19 V 207.46 H 103.72 Z"
+           id="path8" /><path
+           style="fill:#e4154b"
+           d="M 352.68,207.46 H 560.12 V 414.92 H 352.68 Z"
+           id="path10" /></g></g></g></svg>
