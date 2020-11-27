@@ -14,6 +14,8 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
     constructor() {
         super();
         this.lang = i18n.language;
+        // todo: get authentication status from api server.
+        this.authenticated = false;
     }
 
     static get scopedElements() {
@@ -26,6 +28,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
     static get properties() {
         return {
             lang: { type: String },
+            authenticated: { type: Boolean, attribute: false }
         };
     }
 
@@ -54,18 +57,41 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
+    // todo: remove this, it is only here for demo purposes
+    tempNext() {
+        this.authenticated = true;
+    }
+
     // todo: confirmation screen
+    // todo: i18n
+    // todo: re-authenticate
     render() {
-        return html`
+        if (!this.authenticated) {
+            return html`
             <p>
               *select method?*
             </p>
             
-            <dbp-qr-code data="hello world!" format="svg" modulesize="10" margin="1"></dbp-qr-code><br />
+            <dbp-qr-code
+                data="hello world!"
+                format="svg"
+                modulesize="10"
+                margin="1"
+                @click="${() => this.tempNext()}"
+            ></dbp-qr-code><br />
             
             Scan me...<br />
             
             with a SSI Wallet: *list of wallets*
+        `;
+        }
+
+        return html`
+            <img src="#" alt="success" /><br />
+            
+            <p>Authenticated!</p>
+            
+            Now you can export diplomas or grades!
         `;
     }
 }
