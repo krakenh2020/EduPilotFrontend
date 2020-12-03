@@ -7,10 +7,10 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Chrome
-        run: |
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y chromium-browser
-          npm i -D puppeteer karma-chrome-launcher
+      #- name: Install Chrome
+      #  run: |
+      #    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y chromium-browser
+      #    npm i -D puppeteer karma-chrome-launcher
         
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.4

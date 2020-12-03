@@ -12,10 +12,10 @@ module.exports = function(config) {
       {pattern: './**/*', included: false, watched: true, served: true},
     ],
     autoWatch: true,
-    browsers: ['ChromiumHeadlessNoSandbox', 'FirefoxHeadless'],
+    browsers: ['ChromeHeadlessNoSandbox', 'FirefoxHeadless'],
     customLaunchers: {
-        ChromiumHeadlessNoSandbox: {
-        base: 'ChromiumHeadless',
+        ChromeHeadlessNoSandbox: {
+        base: 'ChromeHeadless',
         flags: ['--no-sandbox']
       }
     },
