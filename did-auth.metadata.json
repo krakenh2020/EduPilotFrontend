@@ -1,0 +1,17 @@
+{
+  "element": "did-auth",
+  "module_src": "did-auth.js",
+  "routing_name": "did-auth",
+  "name": {
+    "de": "Verify your Identity",
+    "en": "Verify your Identity"
+  },
+  "short_name": {
+    "de": "Verify your Identity",
+    "en": "Verify your Identity"
+  },
+  "description": {
+    "de": "Dies ist eine Starter Activity für den Digital Blueprint.",
+    "en": "This is a starter activity for the digital blueprint."
+  }
+}

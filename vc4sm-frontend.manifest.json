@@ -1,0 +1,20 @@
+{
+  "short_name": "Frontend Starter App",
+  "name": "Frontend Starter App",
+  "start_url": "./vc4sm-frontend.html",
+  "icons": [
+    {
+      "src": "local/vc4sm-frontend/icon/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "local/vc4sm-frontend/icon/icon-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "theme_color": "#E4154B"
+}

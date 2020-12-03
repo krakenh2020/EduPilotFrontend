@@ -1,0 +1,17 @@
+{
+  "element": "issue-diploma",
+  "module_src": "issue-diploma.js",
+  "routing_name": "issue-diploma",
+  "name": {
+    "de": "Export Diploma",
+    "en": "Export Diploma"
+  },
+  "short_name": {
+    "de": "Export Diploma",
+    "en": "Export Diploma"
+  },
+  "description": {
+    "de": "Dies ist eine Starter Activity für den Digital Blueprint.",
+    "en": "This is a starter activity for the digital blueprint."
+  }
+}

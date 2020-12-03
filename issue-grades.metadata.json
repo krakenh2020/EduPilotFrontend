@@ -1,0 +1,17 @@
+{
+  "element": "issue-grades",
+  "module_src": "issue-grades.js",
+  "routing_name": "issue-grades",
+  "name": {
+    "de": "Export Grades",
+    "en": "Export Grades"
+  },
+  "short_name": {
+    "de": "Export Grades",
+    "en": "Export Grades"
+  },
+  "description": {
+    "de": "Dies ist eine Starter Activity für den Digital Blueprint.",
+    "en": "This is a starter activity for the digital blueprint."
+  }
+}
