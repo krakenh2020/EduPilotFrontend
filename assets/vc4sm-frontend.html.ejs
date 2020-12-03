@@ -101,14 +101,14 @@
 
 <body>
 <<%= name %>
-    lang="de"
+    lang="en"
     src="<%= getUrl(name + '.topic.metadata.json') %>"
     entry-point-url="<%= entryPointURL %>"
     base-path="<%= getUrl('') %>"
     keycloak-config='{"url": "<%= keyCloakBaseURL %>", "realm": "tugraz", "clientId": "<%= keyCloakClientId %>", "silentCheckSsoRedirectUri": "<%= getUrl('silent-check-sso.html') %>" }'
     matomo-url="<%= matomoUrl %>"
     matomo-site-id="<%= matomoSiteId %>"
-    shell-name="TU Graz"
+    shell-name="KRAKEN Education Pilot Demo"
     shell-subname="Graz University of Technology"
     no-brand
 ><dbp-loading-spinner></dbp-loading-spinner></<%= name %>>

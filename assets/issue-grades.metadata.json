@@ -11,7 +11,7 @@
     "en": "Export Grades"
   },
   "description": {
-    "de": "Dies ist eine Starter Activity für den Digital Blueprint.",
-    "en": "This is a starter activity for the digital blueprint."
+    "de": "Ein Lehrveranstaltungszeugnis anfordern.",
+    "en": "Issuer a credential for one or multiple of your grades."
   }
 }
