@@ -1,18 +1,27 @@
-vc4sm-frontend
-==============
+# KRAKEN Education Pilot - Uni Connector UI Preview
 
-a frontend for an API that provides education verifiable credentials to university students.
 
-Part of the **Verifiable Credentials for Student Mobility** project funded by TU Graz 
+A frontend for [an API](https://api.tugraz.at/) that provides education verifiable credentials to university students.
+
+Part of the **H2020 Project KRAKEN** and the **Verifiable Credentials for Student Mobility** project funded by TU Graz 
 as a technologically enhanced administration (TEA) marketplace project.
+
+
+online preview
+--------------
+
+* The content of this repo is deployed to: https://krakenh2020.github.io/EduPilotPrototype1/
+* Tests: ![Build and Test](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Test/badge.svg?branch=master)
+* Deployment: ![Build and Deploy](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Deploy/badge.svg?branch=master)
+
 
 local development
 -----------------
 
 ```bash
 # get the source
-git clone git@github.com:PeterTheOne/vc4sm-frontend.git
-cd vc4sm-frontend
+git clone https://github.com/krakenh2020/EduPilotPrototype1.git
+cd EduPilotPrototype1
 git submodule update --init
 
 # install dependencies
