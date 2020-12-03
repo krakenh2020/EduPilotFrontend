@@ -11,8 +11,8 @@ online preview
 --------------
 
 * The content of this repo is deployed to: https://krakenh2020.github.io/EduPilotPrototype1/
-* Tests: ![Build and Test](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Test/badge.svg?branch=master)
-* Deployment: ![Build and Deploy](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Deploy/badge.svg?branch=master)
+* ![Build and Test](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Test/badge.svg?branch=master)
+* ![Build and Deploy](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Deploy/badge.svg?branch=master)
 
 
 local development
