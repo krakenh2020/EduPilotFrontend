@@ -15,9 +15,11 @@ jobs:
       - name: Checkout submodules 🌐
         run: git submodule update --init
 
-      - name: Debug git config 👷
+      - name: Fix git config 👷
         run: |
-          git config --get remote.origin.url
+          echo "https://github.com/$GITHUB_REPOSITORY.git"
+          git remote rm origin
+          git remote add origin https://github.com/$GITHUB_REPOSITORY.git
 
       - name: Install and Build 🔧
         run: |
