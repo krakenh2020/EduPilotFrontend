@@ -17,8 +17,8 @@ jobs:
         with:
           persist-credentials: false
 
-        - name: Checkout submodules
-          run: git submodule update --init
+      - name: Checkout submodules
+        run: git submodule update --init
 
       - name: Install  🔧
         run: |
