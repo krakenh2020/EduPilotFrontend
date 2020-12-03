@@ -24,6 +24,10 @@ jobs:
           yarn install
           yarn rollup -c --environment BUILD:kraken
 
+      - name: Deploy FallbackResource 🔀
+        run: |
+          echo '<html><head><meta http-equiv="refresh" content="0; url=https://krakenh2020.github.io/EduPilotPrototype1/vc4sm-frontend.html"></head><body></body></html>' > dist/index.html
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
