@@ -73,7 +73,7 @@ function generateTLSConfig() {
 
   if (!fs.existsSync('.cert/server.key') || !fs.existsSync('.cert/server.cert')) {
     const attrs = [{name: 'commonName', value: 'dbp-dev.localhost'}];
-    const pems = selfsigned.generate(attrs, {algorithm: 'sha256', days: 9999});
+    const pems = selfsigned.generate(attrs, {algorithm: 'sha256', keySize: 2048, days: 9999});
     fs.writeFileSync('.cert/server.key', pems.private);
     fs.writeFileSync('.cert/server.cert', pems.cert);
   }
