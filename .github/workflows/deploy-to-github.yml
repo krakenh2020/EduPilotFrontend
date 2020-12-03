@@ -12,8 +12,12 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Checkout submodules
+      - name: Checkout submodules 🌐
         run: git submodule update --init
+
+      - name: Debug git config 👷
+        run: |
+          git config --get remote.origin.url
 
       - name: Install and Build 🔧
         run: |
