@@ -8,8 +8,8 @@
     "en": "Education Credential Exporter"
   },
   "description": {
-    "de": "Using this application, you can retrieve a digital and secure version of your diplomas and grades of indiviual courses.",
-    "en": "Mit dieser Applikation kannst du digitale, verifizierbare Zertifikate für deine LV Noten und Abschlüsse erstellen."
+    "de": "Mit dieser Applikation kannst du digitale, verifizierbare Zertifikate für deine LV Noten und Abschlüsse erstellen.",
+    "en": "Using this application, you can retrieve a digital and secure version of your diplomas and grades of indiviual courses."
   },
   "routing_name": "vc4sm-frontend",
   "activities": [
