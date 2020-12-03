@@ -11,7 +11,7 @@
     "en": "Verify your Identity"
   },
   "description": {
-    "de": "Dies ist eine Starter Activity für den Digital Blueprint.",
-    "en": "This is a starter activity for the digital blueprint."
+    "de": "Deine DID verifizieren.",
+    "en": "Connect your DID."
   }
 }

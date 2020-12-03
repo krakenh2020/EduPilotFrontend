@@ -1,6 +1,6 @@
 {
-  "short_name": "Frontend Starter App",
-  "name": "Frontend Starter App",
+  "short_name": "Edu Pilot Frontend",
+  "name": "KRAKEN Education Pilot Frontend",
   "start_url": "./vc4sm-frontend.html",
   "icons": [
     {
