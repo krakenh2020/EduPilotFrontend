@@ -20,15 +20,15 @@ jobs:
           yarn install
           yarn rollup -c --environment BUILD:kraken
 
-      - name: Lint :shirt:
+      - name: Lint 🚧
         run: |
           yarn lint
 
-      - name: Test :rotating_light:
+      - name: Test 🚨
         run: |
           yarn test
 
-      - name: Test Full :rotating_light:
+      - name: Test Full 🔥
         run: |
           yarn test-full
           
