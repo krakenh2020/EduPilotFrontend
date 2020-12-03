@@ -1,10 +1,10 @@
-name: SonarQube
+name: SonarQube Scan
 on:
   push:
     branches:
       - master
 jobs:
-  build-and-deploy:
+  sonarqube-scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
