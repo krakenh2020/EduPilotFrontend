@@ -11,8 +11,8 @@ local development
 
 ```bash
 # get the source
-git clone git@gitlab.tugraz.at:dbp//web-components/dbp-starter-app.git
-cd dbp-starter-app
+git clone git@github.com:PeterTheOne/vc4sm-frontend.git
+cd vc4sm-frontend
 git submodule update --init
 
 # install dependencies
