@@ -20,7 +20,7 @@ jobs:
           echo "https://github.com/$GITHUB_REPOSITORY.git"
           git remote rm origin
           git remote add origin https://github.com/$GITHUB_REPOSITORY.git
-          
+
       - name: Install and Build 🔧
         run: |
           yarn install
@@ -31,7 +31,5 @@ jobs:
         with:
           host: ${{ secrets.SONARQUBE_HOST }}
           login: ${{ secrets.SONARQUBE_TOKEN }}
-    
-    
-    
-    
+          projectKey: EduPilotPrototype1
+          projectVersion: 0.0.1
