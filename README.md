@@ -62,3 +62,5 @@ also see agreement in german below.
   diesen ein einfaches Nutzungsrecht einzuräumen. Die Übertragung oben genannter
   Rechte ist mit der Bezahlung des vereinbarten Entgelts abgegolten. Ein darüber
   hinaus gehendes Entgelt gebührt ausdrücklich nicht.
+
+
