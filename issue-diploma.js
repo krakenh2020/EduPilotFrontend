@@ -8,11 +8,12 @@ let e,t,s,n=e=>e;
  * @open-wc/dedupe-mixin: MIT
  * @open-wc/scoped-elements: MIT
  * @dbp-toolkit/common: LGPL-2.1-or-later
+ * @dbp-toolkit/provider: LGPL-2.1-or-later
  * @babel/runtime: MIT
  * i18next: MIT
  * qrjs: MIT
  * webcomponent-qr-code: MIT
- */import"./shared/i18next.f6eb636c.es.js";import{c as a}from"./i18n.js";import{S as r,D as i,I as o,B as c,c as l,g as p,h as u,d as g}from"./shared/dbp-lit-element.0e6946f2.es.js";const d=a();class m extends(r(i)){constructor(){super(),this.lang=d.language}static get scopedElements(){return{"dbp-icon":o,"dbp-button":c}}static get properties(){return{lang:{type:String}}}connectedCallback(){super.connectedCallback()}update(e){e.forEach(((e,t)=>{switch(t){case"lang":d.changeLanguage(this.lang)}})),super.update(e)}static get styles(){return l(e||(e=n`
+ */import"./shared/i18next.f6eb636c.es.js";import{c as a}from"./i18n.js";import{S as r,D as i,I as o,B as c,c as l,g as p,h as u,d as g}from"./shared/dbp-lit-element.5f5e4beb.es.js";const d=a();class b extends(r(i)){constructor(){super(),this.lang=d.language}static get scopedElements(){return{"dbp-icon":o,"dbp-button":c}}static get properties(){return{lang:{type:String}}}connectedCallback(){super.connectedCallback()}update(e){e.forEach(((e,t)=>{switch(t){case"lang":d.changeLanguage(this.lang)}})),super.update(e)}static get styles(){return l(e||(e=n`
             ${0}
             
             ul {
@@ -34,5 +35,5 @@ let e,t,s,n=e=>e;
             <ul>
                 ${0}
             </ul>
-        `),e)}}g("issue-diploma",m);
+        `),e)}}g("issue-diploma",b);
 //# sourceMappingURL=issue-diploma.js.map

@@ -7,6 +7,7 @@
  * @open-wc/dedupe-mixin: MIT
  * @open-wc/scoped-elements: MIT
  * @dbp-toolkit/common: LGPL-2.1-or-later
+ * @dbp-toolkit/provider: LGPL-2.1-or-later
  * @babel/runtime: MIT
  * i18next: MIT
  * qrjs: MIT
