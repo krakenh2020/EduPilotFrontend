@@ -12,6 +12,10 @@ online preview
 * The content of this repo is deployed to: https://krakenh2020.github.io/EduPilotPrototype1/
 * ![Build and Test](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Test/badge.svg?branch=master)
 * ![Build and Deploy](https://github.com/krakenh2020/EduPilotPrototype1/workflows/Build%20and%20Deploy/badge.svg?branch=master)
+* [![Quality Gate Status](https://sonari.atosresearch.eu/api/project_badges/measure?project=EduPilotPrototype1&metric=alert_status)](https://sonari.atosresearch.eu/dashboard?id=EduPilotPrototype1) 
+* [![Security Rating](https://sonari.atosresearch.eu/api/project_badges/measure?project=EduPilotPrototype1&metric=security_rating)](https://sonari.atosresearch.eu/dashboard?id=EduPilotPrototype1)
+* [![Vulnerabilities](https://sonari.atosresearch.eu/api/project_badges/measure?project=EduPilotPrototype1&metric=vulnerabilities)](https://sonari.atosresearch.eu/dashboard?id=EduPilotPrototype1)
+* [![Technical Debt](https://sonari.atosresearch.eu/api/project_badges/measure?project=EduPilotPrototype1&metric=sqale_index)](https://sonari.atosresearch.eu/dashboard?id=EduPilotPrototype1)
 
 
 local development
