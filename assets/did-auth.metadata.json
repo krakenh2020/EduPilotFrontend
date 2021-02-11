@@ -3,15 +3,15 @@
   "module_src": "did-auth.js",
   "routing_name": "did-auth",
   "name": {
-    "de": "Verify your Identity",
+    "de": "Verifiziere deine Identität",
     "en": "Verify your Identity"
   },
   "short_name": {
-    "de": "Verify your Identity",
+    "de": "Verifiziere deine Identität",
     "en": "Verify your Identity"
   },
   "description": {
-    "de": "Deine DID verifizieren.",
-    "en": "Connect your DID."
+    "de": "Als erstes deine Identität verifizeren um als nächstes ein Abschlusszeugnis oder Note zu exportieren.",
+    "en": "First verify your identity to export a diploma or course grades next."
   }
 }

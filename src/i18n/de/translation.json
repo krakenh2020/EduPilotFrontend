@@ -1,5 +1,21 @@
 {
   "starter-activity": {
     "title": "Starter Activity"
-  }
+  },
+  "did-auth": {
+    "select-method": "Wähle DID-Methode/Authentifizierung:",
+    "scan": "Scanne den QR code um deine Identität zu bestätigen, verwende dafür eines der unterstützten wallets.",
+    "success": "Erfolgreich Authentifiziert!"
+  },
+  "issue-diploma": {
+    "scan": "Scanne den QR code um dein Zeugnis in eines der unterstützen wallets zu importieren."
+  },
+  "issue-grades": {
+    "scan": "Scanne den QR code um deine Noten in eines der unterstützen wallets zu importieren."
+  },
+  "verify": {
+
+  },
+  "please-login": "Zum fortfahren, bitte einloggen.",
+  "wallets": "Liste unterstützter SSI Wallets"
 }

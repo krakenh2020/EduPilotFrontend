@@ -3,15 +3,15 @@
   "module_src": "verify-vc.js",
   "routing_name": "verify-vc",
   "name": {
-    "de": "Credential Verifizieren",
+    "de": "Verifiziere Credential",
     "en": "Verify Credential"
   },
   "short_name": {
-    "de": "Credential Verifizieren",
+    "de": "Verifiziere Credential",
     "en": "Verify Credential"
   },
   "description": {
-    "de": "Schauen ob ein Credential gültig ist.",
-    "en": "Let's see if a credential is valid."
+    "de": "Überprüfe ob eine Credential echt ist.",
+    "en": "Check if a Credential is real."
   }
 }
