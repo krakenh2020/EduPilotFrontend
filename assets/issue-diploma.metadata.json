@@ -3,15 +3,15 @@
   "module_src": "issue-diploma.js",
   "routing_name": "issue-diploma",
   "name": {
-    "de": "Export Diploma",
+    "de": "Exportiere Zeugnis",
     "en": "Export Diploma"
   },
   "short_name": {
-    "de": "Export Diploma",
+    "de": "Exportiere Zeugnis",
     "en": "Export Diploma"
   },
   "description": {
-    "de": "Dies ist eine Starter Activity für den Digital Blueprint.",
-    "en": "This is a starter activity for the digital blueprint."
+    "de": "Hier bekommst du dein Zeugenis in digitaler Form.",
+    "en": "Here you can get your diploma in digital form."
   }
 }
