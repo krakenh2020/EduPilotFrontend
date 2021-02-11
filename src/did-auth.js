@@ -95,6 +95,27 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
             }
         `;
     }
+    async httpGetAsync(url, options) {
+        let response = await fetch(url, options).then(result => {
+            if (!result.ok) throw result;
+            return result.json();
+        });
+
+        return response;
+    }
+
+
+    async checkAuthenticated() {
+        const options = {
+            headers: {
+                Authorization: "Bearer " + window.DBPAuthToken
+            }
+        };
+        const baseUrl = 'http://127.0.0.1:8000/';
+        const url = baseUrl + 'organizations?page=1';
+        const resp = await this.httpGetAsync(url, options);
+        console.log(resp);
+    }
 
     // todo: remove this, it is only here for demo purposes
     tempNext() {
@@ -150,6 +171,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         }
 
         return html`
+            <button @click="${this.checkAuthenticated}">test</button>
             <span class="success">✔</span><br />
             
             <p>${i18n.t('did-auth.success')}</p>
