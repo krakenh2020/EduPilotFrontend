@@ -63,7 +63,7 @@ switch (build) {
     entryPointURL = 'https://krakenh2020.github.io';
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
-    keyCloakClientId = 'auth-dev-mw-frontend-local';
+    keyCloakClientId = 'auth-iaik-kraken-dev-github';
   case 'test':
     break;
   default:
