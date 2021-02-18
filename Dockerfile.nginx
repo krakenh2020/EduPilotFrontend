@@ -1,4 +1,4 @@
 FROM nginx:alpine 
 
+COPY ./webserver/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./dist /application/public
-
