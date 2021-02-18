@@ -1,0 +1,58 @@
+name: Build and Deploy Docker Image
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.4
+        with:
+          persist-credentials: false
+
+      - name: Checkout submodules 🌐
+        run: git submodule update --init
+
+      - name: Fix app-shell URLs 👷
+        run: |
+          APPSHELL="./vendor/toolkit/packages/app-shell/src/app-shell.js"
+          sed -i -e 's:datenschutz.tugraz.at/erklaerung:github.com/site/privacy:g' $APPSHELL
+          sed -i -e 's:www.tugraz.at/en/about-this-page/legal-notice/:krakenh2020.eu/legal-notice:g' $APPSHELL
+          sed -i -e 's:www.tugraz.at/ueber-diese-seite/impressum/:krakenh2020.eu/legal-notice:g' $APPSHELL
+          sed -i -e 's:it-support@tugraz.at:smore@tugraz.at:g' $APPSHELL
+
+      - name: Fix git config 👷
+        run: |
+          echo "https://github.com/$GITHUB_REPOSITORY.git"
+          git remote rm origin
+          git remote add origin https://github.com/$GITHUB_REPOSITORY.git
+
+      - name: Install and Build 🔧
+        run: |
+          yarn install
+          yarn rollup -c --environment BUILD:kraken-local
+
+      - name: Deploy FallbackResource 🔀
+        run: |
+          REDIR='<html><head><meta http-equiv="refresh" content="0; url=https://krakenh2020.github.io/EduPilotPrototype1/vc4sm-frontend.html"></head><body></body></html>'
+          echo $REDIR > dist/index.html
+          echo $REDIR > dist/404.html
+
+      - name: Docker Login
+        uses: docker/login-action@v1
+        with:
+          registry: docker.pkg.github.com
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Docker Build & Push Docker image
+        run: |
+          export DOCKER_TAG=docker.pkg.github.com/krakenh2020/edupilotprototype1/kraken-edu_connector:latest
+          echo "Building branch: $GITHUB_REF"
+          echo "      at commit: ${{ github.sha }}"
+          echo "   triggered by: ${{ github.event_name}}"
+          echo "     Pushing to: $DOCKER_TAG"
+          docker build . --tag $DOCKER_TAG --file Dockerfile.nginx
+          docker push $DOCKER_TAG
