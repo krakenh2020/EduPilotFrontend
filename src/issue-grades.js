@@ -108,10 +108,12 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         if (!this.exporting) {
             const coursesList = this.courseGrades.map((d) => html`
                 <li>
-                    ${d.name}<br />
-                    ${d.achievenmentDate}<br />
-                    ${d.credits} ECTS<br />
-                    ${d.grade} Grade<br />
+                    <div>
+                        <strong>${d.name}</strong><br />
+                        ${d.credits} ECTS<br />
+                        ${d.grade} Grade<br />
+                        ${d.achievenmentDate}<br />
+                    </div>
                     <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export()}" />
                 </li>
             `);
