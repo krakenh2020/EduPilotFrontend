@@ -15,6 +15,10 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         super();
         this.lang = i18n.language;
         this.exporting = false;
+
+        this.fetchCourseGrades().then((grades) => {
+            this.courseGrades = grades.map((g) => g.name);
+        });
     }
 
     static get scopedElements() {
@@ -29,6 +33,7 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         return {
             lang: { type: String },
             exporting: { type: Boolean, attribute: false },
+            courseGrades: { type: Array },
         };
     }
 
@@ -71,6 +76,27 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         this.exporting = true;
     }
 
+    async httpGetAsync(url, options) {
+        let response = await fetch(url, options).then(result => {
+            if (!result.ok) throw result;
+            return result.json();
+        });
+
+        return response;
+    }
+
+    async fetchCourseGrades() {
+        const options = {
+            headers: {
+                Authorization: "Bearer " + window.DBPAuthToken
+            }
+        };
+        const baseUrl = 'http://127.0.0.1:8000/';
+        const url = baseUrl + 'course_grades?page=1';
+        const resp = await this.httpGetAsync(url, options);
+        return resp['hydra:member'];
+    }
+
     // todo: maybe derive diploma and grades from the same activity
     render() {
         if (!window.DBPAuthToken) {
@@ -80,14 +106,7 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         }
 
         if (!this.exporting) {
-            const courses = [
-                'Operating Systems',
-                'Human-Computer Interaction and Visual Computing',
-                'Data Management and Data Science',
-                'Theoretical Computer Science'
-            ];
-
-            const coursesList = courses.map((d) => html`
+            const coursesList = this.courseGrades.map((d) => html`
                 <li>
                     ${d}
                     <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export()}" />
