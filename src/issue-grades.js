@@ -17,7 +17,7 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         this.exporting = false;
 
         this.fetchCourseGrades().then((grades) => {
-            this.courseGrades = grades.map((g) => g.name);
+            this.courseGrades = grades;
         });
     }
 
@@ -108,7 +108,10 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         if (!this.exporting) {
             const coursesList = this.courseGrades.map((d) => html`
                 <li>
-                    ${d}
+                    ${d.name}<br />
+                    ${d.achievenmentDate}<br />
+                    ${d.credits} ECTS<br />
+                    ${d.grade} Grade<br />
                     <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export()}" />
                 </li>
             `);

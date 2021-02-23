@@ -17,7 +17,7 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
         this.exporting = false;
 
         this.fetchDiplomas().then((diplomas) => {
-            this.diplomas = diplomas.map((d) => d.name);
+            this.diplomas = diplomas;
         });
     }
 
@@ -114,7 +114,9 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
 
             const diplomaList = this.diplomas.map((d) => html`
                 <li>
-                    ${d}
+                    ${d.name}<br />
+                    ${d.academicDegree}<br />
+                    ${d.achievenmentDate}<br />
                     <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export()}" />
                 </li>
             `);
