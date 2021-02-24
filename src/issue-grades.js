@@ -33,6 +33,7 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         return {
             lang: { type: String },
             exporting: { type: Boolean, attribute: false },
+            exportingId: { type: String },
             courseGrades: { type: Array },
         };
     }
@@ -71,9 +72,10 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
-    export() {
+    export(id) {
         console.log('export');
         this.exporting = true;
+        this.exportingId = id;
     }
 
     async httpGetAsync(url, options) {
@@ -114,7 +116,7 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
                         ${d.grade} Grade<br />
                         ${d.achievenmentDate}<br />
                     </div>
-                    <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export()}" />
+                    <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
                 </li>
             `);
 
@@ -130,6 +132,8 @@ class IssueGrades extends ScopedElementsMixin(DBPLitElement) {
             <p>
                 ${i18n.t('issue-grades.scan')}
             </p>
+
+            <pre>${JSON.stringify(this.courseGrades.filter((c) => c['@id'] === this.exportingId)[0], null, 2)}</pre>
 
             <dbp-qr-code
               data="${qrData}"
