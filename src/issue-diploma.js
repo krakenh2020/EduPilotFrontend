@@ -93,7 +93,7 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
                 Authorization: "Bearer " + window.DBPAuthToken
             }
         };
-        const baseUrl = 'http://127.0.0.1:8000/';
+        const baseUrl = 'http://127.0.0.1:8001/';
         const url = baseUrl + 'diplomas?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'];
