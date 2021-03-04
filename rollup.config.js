@@ -46,7 +46,7 @@ let checkLicenses = buildFull;
 switch (build) {
   case 'local':
     basePath = '/dist/';
-    entryPointURL = 'http://127.0.0.1:8000';
+    entryPointURL = 'http://127.0.0.1:8001';
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
     keyCloakClientId = 'auth-dev-mw-frontend-local';
