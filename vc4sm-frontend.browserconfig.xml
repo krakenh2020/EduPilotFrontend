@@ -2,7 +2,7 @@
 <browserconfig>
     <msapplication>
         <tile>
-            <square150x150logo src="/local/vc4sm-frontend/icon/mstile-150x150.png"/>
+            <square150x150logo src="/EduPilotPrototype1/local/vc4sm-frontend/icon/mstile-150x150.png"/>
             <TileColor>#ffffff</TileColor>
         </tile>
     </msapplication>
