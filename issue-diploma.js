@@ -26,7 +26,7 @@ let t,e,i,s,a,r=t=>t;
               justify-content: space-between;
               margin-bottom: 1rem;
             }
-        `),h())}export(t){console.log("export"),this.exporting=!0,this.exportingId=t}async httpGetAsync(t,e){return await fetch(t,e).then((t=>{if(!t.ok)throw t;return t.json()}))}async fetchDiplomas(){const t={headers:{Authorization:"Bearer "+window.DBPAuthToken}};return(await this.httpGetAsync("http://127.0.0.1:8000/diplomas?page=1",t))["hydra:member"]}render(){if(!window.DBPAuthToken)return m(e||(e=r`
+        `),h())}export(t){console.log("export"),this.exporting=!0,this.exportingId=t}async httpGetAsync(t,e){return await fetch(t,e).then((t=>{if(!t.ok)throw t;return t.json()}))}async fetchDiplomas(){const t={headers:{Authorization:"Bearer "+window.DBPAuthToken}};return(await this.httpGetAsync("http://127.0.0.1:8001/diplomas?page=1",t))["hydra:member"]}render(){if(!window.DBPAuthToken)return m(e||(e=r`
                 <p>${0}</p>
             `),g.t("please-login"));if(!this.exporting){const t=this.diplomas.map((t=>m(i||(i=r`
                 <li>
