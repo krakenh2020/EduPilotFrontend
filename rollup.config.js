@@ -66,7 +66,7 @@ switch (build) {
     keyCloakClientId = 'auth-iaik-kraken-dev-github';
   case 'kraken-local':
     basePath = '/';
-    entryPointURL = 'http://localhost:8080'; // UNIVERSITY_FRONTEND_PORT
+    entryPointURL = 'http://localhost:8001'; // UNIVERSITY_FRONTEND_PORT
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
     keyCloakClientId = 'auth-iaik-kraken-dev-local';
