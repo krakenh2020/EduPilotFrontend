@@ -88,7 +88,7 @@
     </style>
 
     <!-- Preloading/Preconnecting -->
-    <link rel="preconnect" href="http://localhost:8080">
+    <link rel="preconnect" href="http://localhost:8001">
     <link rel="preconnect" href="https://auth-dev.tugraz.at/auth">
     <script type="module" src="https://auth-dev.tugraz.at/auth/js/keycloak.min.js"></script>
 </head>
@@ -97,7 +97,7 @@
 <vc4sm-frontend
     lang="en"
     src="/vc4sm-frontend.topic.metadata.json"
-    entry-point-url="http://localhost:8080"
+    entry-point-url="http://localhost:8001"
     base-path="/"
     keycloak-config='{"url": "https://auth-dev.tugraz.at/auth", "realm": "tugraz", "clientId": "auth-iaik-kraken-dev-local", "silentCheckSsoRedirectUri": "/silent-check-sso.html" }'
     matomo-url="https://analytics.tugraz.at/"
