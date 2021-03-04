@@ -63,13 +63,15 @@ switch (build) {
     entryPointURL = 'https://krakenh2020.github.io';
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
-    keyCloakClientId = 'auth-iaik-kraken-dev-github';
+    //keyCloakClientId = 'auth-iaik-kraken-dev-github';
+    keyCloakClientId = 'auth-dev-mw-frontend-local';
   case 'kraken-local':
     basePath = '/';
     entryPointURL = 'http://localhost:8001'; // UNIVERSITY_FRONTEND_PORT
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
-    keyCloakClientId = 'auth-iaik-kraken-dev-local';
+    //keyCloakClientId = 'auth-iaik-kraken-dev-local';
+    keyCloakClientId = 'auth-dev-mw-frontend-local';
   case 'test':
     break;
   default:
