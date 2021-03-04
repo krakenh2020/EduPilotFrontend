@@ -51,6 +51,6 @@ license
 
 LGPL-2.1-or-later License, Copyright (c) 2020-2021 Peter Grassberger & KRAKEN consortium
 
-Peter Grassberger <p.grassberger@student.tugraz.at> is the original Author.
+Peter Grassberger <p.grassberger@student.tugraz.at> is [the original](https://github.com/PeterTheOne/vc4sm-frontend) Author.
 
 
