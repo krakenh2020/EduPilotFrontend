@@ -6,3 +6,12 @@ npm-debug.log
 .cert
 package-lock.json
 yarn-error.log
+
+# https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
