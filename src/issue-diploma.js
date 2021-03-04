@@ -15,6 +15,10 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
         super();
         this.lang = i18n.language;
         this.exporting = false;
+
+        this.fetchDiplomas().then((diplomas) => {
+            this.diplomas = diplomas;
+        });
     }
 
     static get scopedElements() {
@@ -29,6 +33,8 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
         return {
             lang: { type: String },
             exporting: { type: Boolean, attribute: false },
+            exportingId: { type: String },
+            diplomas: { type: Array },
         };
     }
 
@@ -66,9 +72,31 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
-    export() {
+    export(id) {
         console.log('export');
         this.exporting = true;
+        this.exportingId = id;
+    }
+
+    async httpGetAsync(url, options) {
+        let response = await fetch(url, options).then(result => {
+            if (!result.ok) throw result;
+            return result.json();
+        });
+
+        return response;
+    }
+
+    async fetchDiplomas() {
+        const options = {
+            headers: {
+                Authorization: "Bearer " + window.DBPAuthToken
+            }
+        };
+        const baseUrl = 'http://127.0.0.1:8000/';
+        const url = baseUrl + 'diplomas?page=1';
+        const resp = await this.httpGetAsync(url, options);
+        return resp['hydra:member'];
     }
 
     // todo: maybe derive diploma and grades from the same activity
@@ -85,15 +113,15 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
         }
 
         if (!this.exporting) {
-            const diplomas = [
-              'Bachelor of Science in Engineering',
-              'Bachelor of Arts'
-            ];
 
-            const diplomaList = diplomas.map((d) => html`
+            const diplomaList = this.diplomas.map((d) => html`
                 <li>
-                    ${d}
-                    <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export()}" />
+                    <div>
+                        <strong>${d.name}</strong><br />
+                        ${d.academicDegree}<br />
+                        ${d.achievenmentDate}<br />
+                    </div>
+                    <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
                 </li>
             `);
 
@@ -109,6 +137,8 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
             <p>
                 ${i18n.t('issue-diploma.scan')}
             </p>
+            
+            <pre>${JSON.stringify(this.diplomas.filter((d) => d['@id'] === this.exportingId)[0], null, 2)}</pre>
 
             <dbp-qr-code
               data="${qrData}"
