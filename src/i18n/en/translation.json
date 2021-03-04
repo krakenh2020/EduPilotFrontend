@@ -16,6 +16,6 @@
   "verify": {
 
   },
-  "please-login": "Please login, to proceed.",
+  "please-login": "Please login to proceed.",
   "wallets": "List of supported SSI Wallet:"
 }
