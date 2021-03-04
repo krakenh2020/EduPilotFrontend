@@ -28,7 +28,6 @@ jobs:
 
       - name: Install  🔧
         run: |
-          npm install semver
           yarn install
           yarn rollup -c --environment BUILD:kraken
 
@@ -74,7 +73,6 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          npm install semver
           yarn install
           yarn rollup -c --environment BUILD:kraken-local
 
@@ -131,7 +129,6 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          npm install semver
           yarn install
           yarn rollup -c --environment BUILD:kraken
 
