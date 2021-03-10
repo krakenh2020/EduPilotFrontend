@@ -50,6 +50,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         // todo: get authentication status from api server.
         this.authenticated = false;
         //this.auth = {};
+        this.methodSelected = 'ethr-did';
     }
 
     static get scopedElements() {
@@ -64,6 +65,8 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
             lang: { type: String },
             authenticated: { type: Boolean, attribute: false },
             //auth: { type: Object },
+            methodSelected: { type: String },
+            didCommInvite: { type: String },
         };
     }
 
@@ -101,11 +104,39 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         this.authenticated = true;
     }
 
-    // todo: check if already verified..
+    async httpGetAsync(url, options) {
+        let response = await fetch(url, options).then(result => {
+            if (!result.ok) throw result;
+            return result.json();
+        });
+
+        return response;
+    }
+
+    async fetchDidCommInvite() {
+        const options = {
+            headers: {
+                Authorization: "Bearer " + window.DBPAuthToken
+            }
+        };
+        const baseUrl = 'http://127.0.0.1:8000/';
+        const url = baseUrl + 'did_connections?page=1';
+        const resp = await this.httpGetAsync(url, options);
+        return resp['hydra:member'][0].invitation;
+    }
+
+    async onMethodSelect(e) {
+        const newMethod = e.currentTarget.value;
+        if (newMethod === 'did-comm' && !this.didCommInvite) {
+            this.didCommInvite = await this.fetchDidCommInvite();
+        }
+        this.methodSelected = newMethod;
+    }
+
+    // todo: check if already verified.. (polling)
+    // uport:
     // todo: use uport-credentials to generate qr code...
     // todo: (is the uport wallet supported?)
-    // todo: confirmation screen
-    // todo: i18n
     // todo: re-authenticate
     // todo: fix link to other pages.. (use router, without page reload.)
     render() {
@@ -116,14 +147,17 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         }
 
         if (!this.authenticated) {
-            const qrData = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE';
+            const qrDataUport = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE';
+            const qrDataDidComm = btoa(this.didCommInvite);
+            const qrData = this.methodSelected === 'ethr-did' ? qrDataUport : qrDataDidComm;
+
             return html`
             <div>
                 <label>${i18n.t('did-auth.select-method')}</label>
                 <br />
-                <select>
+                <select @change="${(e) => this.onMethodSelect(e)}">
                     <option value="ethr-did">Ethr-DID (uport shareReq)</option>
-                    <option value="did-comm" disabled>DidComm (todo)</option>
+                    <option value="did-comm">DidComm (aries-framework-go)</option>
                 </select>
             </div>
             
@@ -138,6 +172,8 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
                 margin="1"
                 @click="${() => this.tempNext()}"
             ></dbp-qr-code><br />
+            
+            <pre>${qrData}</pre>
             
             <p>
                 ${i18n.t('wallets')}
