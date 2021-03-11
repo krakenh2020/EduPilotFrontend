@@ -1,4 +1,4 @@
-let e,t,a,s,i=e=>e;
+let e,t,i,a,s=e=>e;
 /*!
  * License: LGPL-2.1-or-later
  * Dependencies:
@@ -11,7 +11,7 @@ let e,t,a,s,i=e=>e;
  * @dbp-toolkit/provider: LGPL-2.1-or-later
  * @babel/runtime: MIT
  * i18next: MIT
- */import{c as r}from"./i18n.js";import{S as d,D as o,I as l,c as n,g as c,h as p,d as u}from"./shared/dbp-lit-element.798cce61.es.js";import{Q as h}from"./shared/qr-code.06ebce81.es.js";import"./shared/i18next.4eb888a0.es.js";const m=r();class g extends(d(o)){constructor(){super(),this.lang=m.language,this.authenticated=!1}static get scopedElements(){return{"dbp-icon":l,"dbp-qr-code":h}}static get properties(){return{lang:{type:String},authenticated:{type:Boolean,attribute:!1}}}connectedCallback(){super.connectedCallback()}update(e){e.forEach(((e,t)=>{switch(t){case"lang":m.changeLanguage(this.lang)}})),super.update(e)}static get styles(){return n(e||(e=i`
+ */import{c as d}from"./i18n.js";import{S as r,D as n,I as o,c,g as h,h as l,d as p}from"./shared/dbp-lit-element.798cce61.es.js";import{Q as m}from"./shared/qr-code.06ebce81.es.js";import"./shared/i18next.4eb888a0.es.js";const u=d();class g extends(r(n)){constructor(){super(),this.lang=u.language,this.authenticated=!1,this.methodSelected="ethr-did"}static get scopedElements(){return{"dbp-icon":o,"dbp-qr-code":m}}static get properties(){return{lang:{type:String},authenticated:{type:Boolean,attribute:!1},methodSelected:{type:String},didCommInvite:{type:String}}}connectedCallback(){super.connectedCallback()}update(e){e.forEach(((e,t)=>{switch(t){case"lang":u.changeLanguage(this.lang)}})),super.update(e)}static get styles(){return c(e||(e=s`
             ${0}
             
             .success {
@@ -19,15 +19,15 @@ let e,t,a,s,i=e=>e;
                 line-height: 10rem;
                 color: green;
             }
-        `),c())}tempNext(){this.authenticated=!0}render(){if(!window.DBPAuthToken)return p(t||(t=i`
+        `),h())}tempNext(){this.authenticated=!0}async httpGetAsync(e,t){return await fetch(e,t).then((e=>{if(!e.ok)throw e;return e.json()}))}async fetchDidCommInvite(){const e={headers:{Authorization:"Bearer "+window.DBPAuthToken}};return(await this.httpGetAsync("http://127.0.0.1:8000/did_connections?page=1",e))["hydra:member"][0].invitation}async onMethodSelect(e){const t=e.currentTarget.value;"did-comm"!==t||this.didCommInvite||(this.didCommInvite=await this.fetchDidCommInvite()),this.methodSelected=t}render(){if(!window.DBPAuthToken)return l(t||(t=s`
                 <p>${0}</p>
-            `),m.t("please-login"));if(!this.authenticated){const e="eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE";return p(a||(a=i`
+            `),u.t("please-login"));if(!this.authenticated){const e="eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE",t=btoa(this.didCommInvite),a="ethr-did"===this.methodSelected?e:t;return l(i||(i=s`
             <div>
                 <label>${0}</label>
                 <br />
-                <select>
+                <select @change="${0}">
                     <option value="ethr-did">Ethr-DID (uport shareReq)</option>
-                    <option value="did-comm" disabled>DidComm (todo)</option>
+                    <option value="did-comm">DidComm (aries-framework-go)</option>
                 </select>
             </div>
             
@@ -43,6 +43,8 @@ let e,t,a,s,i=e=>e;
                 @click="${0}"
             ></dbp-qr-code><br />
             
+            <pre>${0}</pre>
+            
             <p>
                 ${0}
             </p>
@@ -50,7 +52,7 @@ let e,t,a,s,i=e=>e;
                 <li><a href="http://minerva.digital/" target="_blank">Minerva Wallet</a></li>
                 <li>Browser wallet</li>
             </ul>
-        `),m.t("did-auth.select-method"),m.t("did-auth.scan"),e,(()=>this.tempNext()),m.t("wallets"))}return p(s||(s=i`
+        `),u.t("did-auth.select-method"),(e=>this.onMethodSelect(e)),u.t("did-auth.scan"),a,(()=>this.tempNext()),a,u.t("wallets"))}return l(a||(a=s`
             <span class="success">✔</span><br />
             
             <p>${0}</p>
@@ -59,5 +61,5 @@ let e,t,a,s,i=e=>e;
                 Now you can export <a href="/dist/de/issue-diploma">diplomas</a>
                 or <a href="/dist/de/issue-grades">grades</a>.
             </p>
-        `),m.t("did-auth.success"))}}u("did-auth",g);
+        `),u.t("did-auth.success"))}}p("did-auth",g);
 //# sourceMappingURL=did-auth.js.map
