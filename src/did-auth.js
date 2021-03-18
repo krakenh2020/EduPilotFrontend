@@ -51,6 +51,26 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         this.authenticated = false;
         //this.auth = {};
         this.methodSelected = 'ethr-did';
+
+
+        this.intervalId = setInterval(async () => {
+            if (this.methodSelected !== 'did-comm') {
+                return;
+            }
+
+            const didCommInviteDecoded = JSON.parse(this.didCommInvite);
+            const inviteId = didCommInviteDecoded.invitation['@id'];
+            console.log(inviteId);
+            try {
+                const res = await this.fetchDidCommInviteStatus(inviteId);
+                console.log('Invite accepted! ' + res);
+                this.authenticated = true;
+                clearInterval(this.intervalId);
+            } catch (error) {
+                console.log('Invite not accepted yet. :(');
+            }
+
+        }, 1000);
     }
 
     static get scopedElements() {
@@ -67,11 +87,19 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
             //auth: { type: Object },
             methodSelected: { type: String },
             didCommInvite: { type: String },
+            intervalId: { type: Number },
         };
     }
 
     connectedCallback() {
         super.connectedCallback();
+    }
+
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+        }
     }
 
     update(changedProperties) {
@@ -99,11 +127,6 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         `;
     }
 
-    // todo: remove this, it is only here for demo purposes
-    tempNext() {
-        this.authenticated = true;
-    }
-
     async httpGetAsync(url, options) {
         let response = await fetch(url, options).then(result => {
             if (!result.ok) throw result;
@@ -123,6 +146,18 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         const url = baseUrl + 'did_connections?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'][0].invitation;
+    }
+
+    async fetchDidCommInviteStatus(inviteId) {
+        const options = {
+            headers: {
+                Authorization: "Bearer " + window.DBPAuthToken
+            }
+        };
+        const baseUrl = 'http://127.0.0.1:8000/';
+        const url = baseUrl + 'did_connections/' + inviteId;
+        const resp = await this.httpGetAsync(url, options);
+        return resp.invitation;
     }
 
     async onMethodSelect(e) {
@@ -156,7 +191,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
                 <label>${i18n.t('did-auth.select-method')}</label>
                 <br />
                 <select @change="${(e) => this.onMethodSelect(e)}">
-                    <option value="ethr-did">Ethr-DID (uport shareReq)</option>
+                    <option value="ethr-did">Ethr-DID (uport shareReq) (todo)</option>
                     <option value="did-comm">DidComm (aries-framework-go)</option>
                 </select>
             </div>
@@ -170,7 +205,6 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
                 format="svg"
                 modulesize="5"
                 margin="1"
-                @click="${() => this.tempNext()}"
             ></dbp-qr-code><br />
             
             <pre>${qrData}</pre>
