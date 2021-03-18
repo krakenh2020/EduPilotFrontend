@@ -219,6 +219,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
         `;
         }
 
+        // todo: localize
         return html`
             <span class="success">✔</span><br />
             
