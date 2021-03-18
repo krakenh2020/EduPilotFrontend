@@ -13,7 +13,7 @@ let t,e,i,s,a,r=t=>t;
  * i18next: MIT
  * qrjs: MIT
  * webcomponent-qr-code: MIT
- */import{c as l}from"./i18n.js";import{S as n,D as p,I as o,B as d,c,g as h,h as m,d as u}from"./shared/dbp-lit-element.798cce61.es.js";import{Q as y}from"./shared/qr-code.06ebce81.es.js";import"./shared/i18next.4eb888a0.es.js";const g=l();class b extends(n(p)){constructor(){super(),this.lang=g.language,this.exporting=!1,this.fetchDiplomas().then((t=>{this.diplomas=t}))}static get scopedElements(){return{"dbp-icon":o,"dbp-button":d,"dbp-qr-code":y}}static get properties(){return{lang:{type:String},exporting:{type:Boolean,attribute:!1},exportingId:{type:String},diplomas:{type:Array}}}connectedCallback(){super.connectedCallback()}update(t){t.forEach(((t,e)=>{switch(e){case"lang":g.changeLanguage(this.lang)}})),super.update(t)}static get styles(){return c(t||(t=r`
+ */import{c as l}from"./i18n.js";import{S as n,D as p,I as o,B as d,c,g as h,h as m,d as u}from"./shared/dbp-lit-element.21be1086.es.js";import{Q as y}from"./shared/qr-code.06ebce81.es.js";import"./shared/i18next.4eb888a0.es.js";const g=l();class b extends(n(p)){constructor(){super(),this.lang=g.language,this.exporting=!1,this.fetchDiplomas().then((t=>{this.diplomas=t}))}static get scopedElements(){return{"dbp-icon":o,"dbp-button":d,"dbp-qr-code":y}}static get properties(){return{lang:{type:String},exporting:{type:Boolean,attribute:!1},exportingId:{type:String},diplomas:{type:Array}}}connectedCallback(){super.connectedCallback()}update(t){t.forEach(((t,e)=>{switch(e){case"lang":g.changeLanguage(this.lang)}})),super.update(t)}static get styles(){return c(t||(t=r`
             ${0}
             
             .vc-list {

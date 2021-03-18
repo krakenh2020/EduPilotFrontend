@@ -13,7 +13,7 @@ let e,t,s,r,i,a=e=>e;
  * i18next: MIT
  * qrjs: MIT
  * webcomponent-qr-code: MIT
- */import{c as n}from"./i18n.js";import{S as l,D as d,I as o,B as c,c as p,g as h,h as u,d as g}from"./shared/dbp-lit-element.798cce61.es.js";import{Q as m}from"./shared/qr-code.06ebce81.es.js";import"./shared/i18next.4eb888a0.es.js";const y=n();class b extends(l(d)){constructor(){super(),this.lang=y.language,this.exporting=!1,this.fetchCourseGrades().then((e=>{this.courseGrades=e}))}static get scopedElements(){return{"dbp-icon":o,"dbp-button":c,"dbp-qr-code":m}}static get properties(){return{lang:{type:String},exporting:{type:Boolean,attribute:!1},exportingId:{type:String},courseGrades:{type:Array}}}connectedCallback(){super.connectedCallback()}update(e){e.forEach(((e,t)=>{switch(t){case"lang":y.changeLanguage(this.lang)}})),super.update(e)}static get styles(){return p(e||(e=a`
+ */import{c as n}from"./i18n.js";import{S as l,D as d,I as o,B as c,c as p,g as h,h as u,d as g}from"./shared/dbp-lit-element.21be1086.es.js";import{Q as m}from"./shared/qr-code.06ebce81.es.js";import"./shared/i18next.4eb888a0.es.js";const y=n();class b extends(l(d)){constructor(){super(),this.lang=y.language,this.exporting=!1,this.fetchCourseGrades().then((e=>{this.courseGrades=e}))}static get scopedElements(){return{"dbp-icon":o,"dbp-button":c,"dbp-qr-code":m}}static get properties(){return{lang:{type:String},exporting:{type:Boolean,attribute:!1},exportingId:{type:String},courseGrades:{type:Array}}}connectedCallback(){super.connectedCallback()}update(e){e.forEach(((e,t)=>{switch(t){case"lang":y.changeLanguage(this.lang)}})),super.update(e)}static get styles(){return p(e||(e=a`
             ${0}
 
             .vc-list {
