@@ -100,12 +100,13 @@
 </head>
 
 <body>
-<<%= name %>
-    lang="en"
+<dbp-provider id="root"
+              lang="en" entry-point-url="<%= entryPointURL %>" auth>
+    <<%= name %>
+    subscribe="lang:lang,entry-point-url:entry-point-url,auth:auth"
     src="<%= getUrl(name + '.topic.metadata.json') %>"
     entry-point-url="<%= entryPointURL %>"
     base-path="<%= getUrl('') %>"
-    auth 
     requested-login-status
     keycloak-config='{"url": "<%= keyCloakBaseURL %>", "realm": "tugraz", "clientId": "<%= keyCloakClientId %>", "silentCheckSsoRedirectUri": "<%= getUrl('silent-check-sso.html') %>" }'
     matomo-url="<%= matomoUrl %>"
@@ -113,7 +114,8 @@
     shell-name="KRAKEN Education Pilot Demo"
     shell-subname="Graz University of Technology"
     no-brand
-><dbp-loading-spinner></dbp-loading-spinner></<%= name %>>
+    ><dbp-loading-spinner></dbp-loading-spinner></<%= name %>>
+</dbp-provider>
 
 <!-- Error handling for too old browsers -->
 <script src="<%= getPrivateUrl('browser-check.js') %>" defer></script>
