@@ -14,12 +14,9 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
         super();
         this.auth = {};
+        this.entryPointUrl = '';
         this.lang = i18n.language;
         this.exporting = false;
-
-        this.fetchCourseGrades().then((grades) => {
-            this.courseGrades = grades;
-        });
     }
 
     static get scopedElements() {
@@ -38,6 +35,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             exportingId: { type: String },
             courseGrades: { type: Array },
             auth: { type: Object },
+            entryPointUrl: { type: String, attribute: 'entry-point-url' },
         };
     }
 
@@ -50,6 +48,11 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             switch (propName) {
                 case "lang":
                     i18n.changeLanguage(this.lang);
+                    break;
+                case "entryPointUrl":
+                    this.fetchCourseGrades().then((grades) => {
+                        this.courseGrades = grades;
+                    });
                     break;
             }
         });
@@ -96,8 +99,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                 Authorization: "Bearer " + this.auth.token
             }
         };
-        const baseUrl = 'http://127.0.0.1:8000/';
-        const url = baseUrl + 'course_grades?page=1';
+        const url = this.entryPointUrl + '/course_grades?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'];
     }

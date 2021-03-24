@@ -14,12 +14,9 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
         super();
         this.auth = {};
+        this.entryPointUrl = '';
         this.lang = i18n.language;
         this.exporting = false;
-
-        this.fetchDiplomas().then((diplomas) => {
-            this.diplomas = diplomas;
-        });
     }
 
     static get scopedElements() {
@@ -38,6 +35,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             exportingId: { type: String },
             diplomas: { type: Array },
             auth: { type: Object },
+            entryPointUrl: { type: String, attribute: 'entry-point-url' },
         };
     }
 
@@ -50,6 +48,11 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             switch (propName) {
                 case "lang":
                     i18n.changeLanguage(this.lang);
+                    break;
+                case "entryPointUrl":
+                    this.fetchDiplomas().then((diplomas) => {
+                        this.diplomas = diplomas;
+                    });
                     break;
             }
         });
@@ -96,8 +99,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
                 Authorization: "Bearer " + this.auth.token
             }
         };
-        const baseUrl = 'http://127.0.0.1:8000/';
-        const url = baseUrl + 'diplomas?page=1';
+        const url = this.entryPointUrl + '/diplomas?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'];
     }

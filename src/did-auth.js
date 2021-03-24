@@ -47,6 +47,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
         super();
         this.auth = {};
+        this.entryPointUrl = '';
         this.lang = i18n.language;
         // todo: get authentication status from api server.
         this.authenticated = false;
@@ -89,6 +90,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             didCommInvite: { type: String },
             intervalId: { type: Number },
             auth: { type: Object },
+            entryPointUrl: { type: String, attribute: 'entry-point-url' },
         };
     }
 
@@ -143,8 +145,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
                 Authorization: "Bearer " + this.auth.token
             }
         };
-        const baseUrl = 'http://127.0.0.1:8000/';
-        const url = baseUrl + 'did_connections?page=1';
+        const url = this.entryPointUrl + '/did_connections?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'][0].invitation;
     }
@@ -155,8 +156,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
                 Authorization: "Bearer " + this.auth.token
             }
         };
-        const baseUrl = 'http://127.0.0.1:8000/';
-        const url = baseUrl + 'did_connections/' + inviteId;
+        const url = this.entryPointUrl + '/did_connections/' + inviteId;
         const resp = await this.httpGetAsync(url, options);
         return resp.invitation;
     }
