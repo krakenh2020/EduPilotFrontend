@@ -13,5 +13,6 @@
   "description": {
     "de": "Als erstes deine Identität verifizeren um als nächstes ein Abschlusszeugnis oder Note zu exportieren.",
     "en": "First verify your identity to export a diploma or course grades next."
-  }
+  },
+  "subscribe": "lang:lang,entry-point-url:entry-point-url,auth:auth"
 }

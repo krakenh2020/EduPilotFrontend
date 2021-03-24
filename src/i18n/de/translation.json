@@ -1,7 +1,4 @@
 {
-  "starter-activity": {
-    "title": "Starter Activity"
-  },
   "did-auth": {
     "select-method": "Wähle DID-Methode/Authentifizierung:",
     "scan": "Scanne den QR code um deine Identität zu bestätigen, verwende dafür eines der unterstützten wallets.",

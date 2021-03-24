@@ -1,6 +1,6 @@
 {
-  "short_name": "Frontend Starter App",
-  "name": "Frontend Starter App",
+  "short_name": "Education Credential Exporter",
+  "name": "Education Credential Exporter",
   "start_url": "./vc4sm-frontend.html",
   "icons": [
     {

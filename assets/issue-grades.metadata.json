@@ -13,5 +13,6 @@
   "description": {
     "de": "Hier bekommst du deine Noten in digitaler Form.",
     "en": "Here you can get your grades in digital form."
-  }
+  },
+  "subscribe": "lang:lang,entry-point-url:entry-point-url,auth:auth"
 }

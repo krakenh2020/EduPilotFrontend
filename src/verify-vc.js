@@ -4,15 +4,16 @@ import {ScopedElementsMixin} from '@open-wc/scoped-elements';
 import * as commonUtils from '@dbp-toolkit/common/utils';
 import {Icon} from '@dbp-toolkit/common';
 import * as commonStyles from '@dbp-toolkit/common/styles';
-import DBPLitElement from '@dbp-toolkit/common/dbp-lit-element';
+import {AdapterLitElement} from '@dbp-toolkit/provider/src/adapter-lit-element';
 import {QrCodeScanner} from "@dbp-toolkit/qr-code-scanner";
 
 const i18n = createI18nInstance();
 
 
-class VerifyVc extends ScopedElementsMixin(DBPLitElement) {
+class VerifyVc extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
         super();
+        this.auth = {};
         this.lang = i18n.language;
     }
 
@@ -25,7 +26,9 @@ class VerifyVc extends ScopedElementsMixin(DBPLitElement) {
 
     static get properties() {
         return {
+            ...super.properties,
             lang: { type: String },
+            auth: { type: Object },
         };
     }
 

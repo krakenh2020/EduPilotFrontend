@@ -4,15 +4,16 @@ import {ScopedElementsMixin} from '@open-wc/scoped-elements';
 import * as commonUtils from '@dbp-toolkit/common/utils';
 import {Button, Icon} from '@dbp-toolkit/common';
 import * as commonStyles from '@dbp-toolkit/common/styles';
-import DBPLitElement from '@dbp-toolkit/common/dbp-lit-element';
+import {AdapterLitElement} from '@dbp-toolkit/provider/src/adapter-lit-element';
 import QRCode from 'webcomponent-qr-code/qr-code';
 
 const i18n = createI18nInstance();
 
 
-class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
+class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
         super();
+        this.auth = {};
         this.lang = i18n.language;
         this.exporting = false;
 
@@ -31,10 +32,12 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
 
     static get properties() {
         return {
+            ...super.properties,
             lang: { type: String },
             exporting: { type: Boolean, attribute: false },
             exportingId: { type: String },
             diplomas: { type: Array },
+            auth: { type: Object },
         };
     }
 
@@ -90,7 +93,7 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
     async fetchDiplomas() {
         const options = {
             headers: {
-                Authorization: "Bearer " + window.DBPAuthToken
+                Authorization: "Bearer " + this.auth.token
             }
         };
         const baseUrl = 'http://127.0.0.1:8000/';
@@ -106,7 +109,7 @@ class IssueDiploma extends ScopedElementsMixin(DBPLitElement) {
     // todo: modal with vc qr code
     // todo: select format, select schema
     render() {
-        if (!window.DBPAuthToken) {
+        if (!this.auth.token) {
             return html`
                 <p>${i18n.t('please-login')}</p>
             `;

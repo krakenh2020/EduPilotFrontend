@@ -4,7 +4,7 @@ import {ScopedElementsMixin} from '@open-wc/scoped-elements';
 import * as commonUtils from '@dbp-toolkit/common/utils';
 import {Icon} from '@dbp-toolkit/common';
 import * as commonStyles from '@dbp-toolkit/common/styles';
-import DBPLitElement from '@dbp-toolkit/common/dbp-lit-element';
+import {AdapterLitElement} from '@dbp-toolkit/provider/src/adapter-lit-element';
 import QRCode from 'webcomponent-qr-code/qr-code';
 
 // todo: this should anyway happen in the backend..
@@ -43,13 +43,13 @@ const credential = new Credentials({
 const i18n = createI18nInstance();
 
 
-class DidAuth extends ScopedElementsMixin(DBPLitElement) {
+class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
         super();
+        this.auth = {};
         this.lang = i18n.language;
         // todo: get authentication status from api server.
         this.authenticated = false;
-        //this.auth = {};
         this.methodSelected = 'ethr-did';
 
 
@@ -82,12 +82,13 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
 
     static get properties() {
         return {
+            ...super.properties,
             lang: { type: String },
             authenticated: { type: Boolean, attribute: false },
-            //auth: { type: Object },
             methodSelected: { type: String },
             didCommInvite: { type: String },
             intervalId: { type: Number },
+            auth: { type: Object },
         };
     }
 
@@ -139,7 +140,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
     async fetchDidCommInvite() {
         const options = {
             headers: {
-                Authorization: "Bearer " + window.DBPAuthToken
+                Authorization: "Bearer " + this.auth.token
             }
         };
         const baseUrl = 'http://127.0.0.1:8000/';
@@ -151,7 +152,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
     async fetchDidCommInviteStatus(inviteId) {
         const options = {
             headers: {
-                Authorization: "Bearer " + window.DBPAuthToken
+                Authorization: "Bearer " + this.auth.token
             }
         };
         const baseUrl = 'http://127.0.0.1:8000/';
@@ -175,7 +176,7 @@ class DidAuth extends ScopedElementsMixin(DBPLitElement) {
     // todo: re-authenticate
     // todo: fix link to other pages.. (use router, without page reload.)
     render() {
-        if (!window.DBPAuthToken) {
+        if (!this.auth.token) {
             return html`
                 <p>${i18n.t('please-login')}</p>
             `;

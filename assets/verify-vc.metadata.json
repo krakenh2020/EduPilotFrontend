@@ -13,5 +13,6 @@
   "description": {
     "de": "Überprüfe ob eine Credential echt ist.",
     "en": "Check if a Credential is real."
-  }
+  },
+  "subscribe": "lang:lang,entry-point-url:entry-point-url,auth:auth"
 }
