@@ -1,13 +1,13 @@
 import {assert} from 'chai';
 
-import '../src/dbp-starter-activity';
+import '../src/did-auth';
 import '../src/vc4sm-frontend.js';
 
-suite('dbp-starter-activity basics', () => {
+suite('did-auth basics', () => {
   let node;
 
   suiteSetup(async () => {
-    node = document.createElement('dbp-starter-activity');
+    node = document.createElement('did-auth');
     document.body.appendChild(node);
     await node.updateComplete;
   });
