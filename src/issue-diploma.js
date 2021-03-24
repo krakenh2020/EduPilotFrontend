@@ -16,7 +16,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         this.auth = {};
         this.entryPointUrl = '';
         this.lang = i18n.language;
-        this.exporting = false
+        this.exporting = false;
     }
 
     static get scopedElements() {
