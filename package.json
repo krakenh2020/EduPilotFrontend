@@ -18,7 +18,7 @@
     "test-full": "rollup -c --environment FORCE_FULL,BUILD:test && karma start --singleRun",
     "lint": "eslint ."
   },
-  "repository": "git+https://github.com/PeterTheOne/vc4sm-frontend.git",
+  "repository": "git+https://github.com/krakenh2020/EduPilotPrototype1.git",
   "keywords": [
     "education",
     "ssi",
@@ -27,10 +27,10 @@
     "credentials",
     "university"
   ],
-  "author": "Peter Grassberger <p.grassberger@student.tugraz.at> (https://petergrassberger.com)",
-  "homepage": "https://github.com/PeterTheOne/vc4sm-frontend#readme",
+  "author": "Peter Grassberger & Stefan More",
+  "homepage": "https://github.com/krakenh2020/EduPilotPrototype1",
   "bugs": {
-    "url": "https://github.com/PeterTheOne/vc4sm-frontend/issues"
+    "url": "https://github.com/krakenh2020/EduPilotPrototype1/issues"
   },
   "dependencies": {
     "@dbp-toolkit/app-shell": "0.2.2",
@@ -46,18 +46,17 @@
     "lit-html": "^1.2.1",
     "semver": "^7.3.5",
     "source-sans-pro": "^2.45.0",
-    "universal-router": "^9.0.1",
     "webcomponent-qr-code": "^1.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
-    "@rollup/plugin-babel": "^5.0.4",
-    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^10.0.0",
-    "@rollup/plugin-replace": "^2.3.3",
-    "@rollup/plugin-url": "^5.0.1",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-replace": "^2.4.1",
+    "@rollup/plugin-url": "^6.0.0",
     "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
     "chokidar": "^3.4.0",
@@ -65,18 +64,18 @@
     "eslint-plugin-jsdoc": "^30.6.4",
     "glob": "^7.1.6",
     "i18next-scanner": "^3.0.0",
-    "karma": "^5.1.0",
+    "karma": "^6.3.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-firefox-launcher": "^2.1.0",
     "karma-mocha": "^2.0.1",
     "mocha": "^8.0.1",
-    "rollup": "^2.18.1",
+    "rollup": "^2.42.3",
     "rollup-plugin-consts": "^1.0.2",
-    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-emit-ejs": "^3.1.0",
-    "rollup-plugin-license": "^2.1.0",
-    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-license": "^2.3.0",
+    "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-terser": "^7.0.2",
     "selfsigned": "^1.10.7"
   }
