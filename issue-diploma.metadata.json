@@ -13,5 +13,6 @@
   "description": {
     "de": "Hier bekommst du dein Zeugenis in digitaler Form.",
     "en": "Here you can get your diploma in digital form."
-  }
+  },
+  "subscribe": "lang:lang,entry-point-url:entry-point-url,auth:auth"
 }

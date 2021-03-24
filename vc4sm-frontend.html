@@ -94,12 +94,13 @@
 </head>
 
 <body>
-<vc4sm-frontend
-    lang="en"
+<dbp-provider id="root"
+              lang="en" entry-point-url="https://krakenh2020.github.io" auth>
+    <vc4sm-frontend
+    subscribe="lang:lang,entry-point-url:entry-point-url,auth:auth"
     src="/EduPilotPrototype1/vc4sm-frontend.topic.metadata.json"
     entry-point-url="https://krakenh2020.github.io"
     base-path="/EduPilotPrototype1/"
-    auth 
     requested-login-status
     keycloak-config='{"url": "https://auth-dev.tugraz.at/auth", "realm": "tugraz", "clientId": "auth-dev-mw-frontend-local", "silentCheckSsoRedirectUri": "/EduPilotPrototype1/silent-check-sso.html" }'
     matomo-url="https://analytics.tugraz.at/"
@@ -107,7 +108,8 @@
     shell-name="KRAKEN Education Pilot Demo"
     shell-subname="Graz University of Technology"
     no-brand
-><dbp-loading-spinner></dbp-loading-spinner></vc4sm-frontend>
+    ><dbp-loading-spinner></dbp-loading-spinner></vc4sm-frontend>
+</dbp-provider>
 
 <!-- Error handling for too old browsers -->
 <script src="/EduPilotPrototype1/local/vc4sm-frontend/browser-check.js" defer></script>

@@ -7,11 +7,10 @@
  * @open-wc/dedupe-mixin: MIT
  * @open-wc/scoped-elements: MIT
  * @dbp-toolkit/common: LGPL-2.1-or-later
- * @dbp-toolkit/provider: LGPL-2.1-or-later
- * @babel/runtime: MIT
- * i18next: MIT
  * qrjs: MIT
  * webcomponent-qr-code: MIT
+ * @babel/runtime: MIT
+ * i18next: MIT
  * @dbp-toolkit/app-shell: LGPL-2.1-or-later
  * @dbp-toolkit/language-select: LGPL-2.1-or-later
  * @dbp-toolkit/auth: LGPL-2.1-or-later
@@ -21,8 +20,8 @@
  * universal-router: MIT
  * generateUrls: MIT
  * @dbp-toolkit/matomo: LGPL-2.1-or-later
+ * @dbp-toolkit/provider: LGPL-2.1-or-later
  * @dbp-toolkit/qr-code-scanner: LGPL-2.1-or-later
- * tslib: 0BSD
  * async-mutex: MIT
  * qr-scanner: MIT
  */
