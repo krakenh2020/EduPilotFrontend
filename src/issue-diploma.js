@@ -78,10 +78,68 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         `;
     }
 
-    export(id) {
+    async triggerSendOffer(myDid, theirDid) {
+        const options = {
+            method: 'post',
+            headers: {
+                Authorization: "Bearer " + this.auth.token,
+                'Content-Type': 'application/ld+json'
+            },
+            body: JSON.stringify({
+                myDid,
+                theirDid,
+                status: 'requesting...'
+            })
+        };
+        const url = this.entryPointUrl + '/credential/send_offer';
+        const resp = await this.httpGetAsync(url, options);
+        return resp;
+    }
+
+    async acceptRequest(piid) {
+        const options = {
+            method: 'post',
+            headers: {
+                Authorization: "Bearer " + this.auth.token,
+                'Content-Type': 'application/ld+json'
+            },
+            body: JSON.stringify({
+                myDid: piid,
+                theirDid: 'none',
+                status: 'requesting accept...'
+            })
+        };
+        const url = this.entryPointUrl + '/credential/accept_request';
+        const resp = await this.httpGetAsync(url, options);
+        return resp;
+    }
+
+    async export(id) {
         console.log('export');
-        this.exporting = true;
-        this.exportingId = id;
+
+        const myDID = sessionStorage.getItem('did-comm-MyDID');
+        const theirDID = sessionStorage.getItem('did-comm-TheirDID');
+
+        if (!myDID || !theirDID) {
+            alert('no connection :(');
+            return;
+        }
+
+        const res = await this.triggerSendOffer(myDID, theirDID);
+        console.log('triggerSendOffer', res);
+        const piid = JSON.parse(res.myDid).piid;
+
+        const invervalId = setInterval(async () => {
+            const res2 = await this.acceptRequest(piid);
+            if (res2.myDid !== '') {
+                console.log('request accepted');
+
+                clearInterval(invervalId);
+
+                this.exporting = true;
+                this.exportingId = id;
+            }
+        }, 1000);
     }
 
     async httpGetAsync(url, options) {

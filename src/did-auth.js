@@ -64,9 +64,14 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             console.log(inviteId);
             try {
                 const res = await this.fetchDidCommInviteStatus(inviteId);
-                console.log('Invite accepted! ' + res);
+                const resJson = JSON.parse(res);
+                console.log('Invite accepted! ', resJson);
                 this.authenticated = true;
                 clearInterval(this.intervalId);
+
+                sessionStorage.setItem('did-comm-MyDID', resJson.MyDID);
+                sessionStorage.setItem('did-comm-TheirDID', resJson.TheirDID);
+
             } catch (error) {
                 console.log('Invite not accepted yet. :(');
             }
