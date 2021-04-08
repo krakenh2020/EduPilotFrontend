@@ -2,7 +2,7 @@ let t,e,i,a,n=t=>t;function r(){return(r=Object.assign||function(t){for(var e=1;
 /*!
  * License: LGPL-2.1-or-later
  * Dependencies:
- */import{c as s}from"./i18n.js";import{S as o,A as d,I as c,c as l,g as h,h as p,d as u}from"./shared/logger.da18e832.es.js";import{Q as m}from"./shared/qr-code.7c6f0a91.es.js";import"./shared/i18next.e2c56140.es.js";const g=s();class v extends(o(d)){constructor(){var t;super(),t=this,this.auth={},this.entryPointUrl="",this.lang=g.language,this.authenticated=!1,this.methodSelected="ethr-did",this.intervalId=setInterval((async function(){if("did-comm"!==t.methodSelected)return;const e=JSON.parse(t.didCommInvite).invitation["@id"];console.log(e);try{const i=await t.fetchDidCommInviteStatus(e);console.log("Invite accepted! "+i),t.authenticated=!0,clearInterval(t.intervalId)}catch(t){console.log("Invite not accepted yet. :(")}}),1e3)}static get scopedElements(){return{"dbp-icon":c,"dbp-qr-code":m}}static get properties(){return r({},super.properties,{lang:{type:String},authenticated:{type:Boolean,attribute:!1},methodSelected:{type:String},didCommInvite:{type:String},intervalId:{type:Number},auth:{type:Object},entryPointUrl:{type:String,attribute:"entry-point-url"}})}connectedCallback(){super.connectedCallback()}disconnectedCallback(){super.disconnectedCallback(),this.intervalId&&clearInterval(this.intervalId)}update(t){t.forEach(((t,e)=>{switch(e){case"lang":g.changeLanguage(this.lang)}})),super.update(t)}static get styles(){return l(t||(t=n`
+ */import{c as s}from"./i18n.js";import{S as o,A as d,I as c,c as h,g as l,h as p,d as m}from"./shared/logger.da18e832.es.js";import{Q as u}from"./shared/qr-code.7c6f0a91.es.js";import"./shared/i18next.e2c56140.es.js";const I=s();class g extends(o(d)){constructor(){var t;super(),t=this,this.auth={},this.entryPointUrl="",this.lang=I.language,this.authenticated=!1,this.methodSelected="ethr-did",this.intervalId=setInterval((async function(){if("did-comm"!==t.methodSelected)return;const e=JSON.parse(t.didCommInvite).invitation["@id"];console.log(e);try{const i=await t.fetchDidCommInviteStatus(e),a=JSON.parse(i);console.log("Invite accepted! ",a),t.authenticated=!0,clearInterval(t.intervalId),sessionStorage.setItem("did-comm-MyDID",a.MyDID),sessionStorage.setItem("did-comm-TheirDID",a.TheirDID)}catch(t){console.log("Invite not accepted yet. :(")}}),1e3)}static get scopedElements(){return{"dbp-icon":c,"dbp-qr-code":u}}static get properties(){return r({},super.properties,{lang:{type:String},authenticated:{type:Boolean,attribute:!1},methodSelected:{type:String},didCommInvite:{type:String},intervalId:{type:Number},auth:{type:Object},entryPointUrl:{type:String,attribute:"entry-point-url"}})}connectedCallback(){super.connectedCallback()}disconnectedCallback(){super.disconnectedCallback(),this.intervalId&&clearInterval(this.intervalId)}update(t){t.forEach(((t,e)=>{switch(e){case"lang":I.changeLanguage(this.lang)}})),super.update(t)}static get styles(){return h(t||(t=n`
             ${0}
             
             .success {
@@ -10,9 +10,9 @@ let t,e,i,a,n=t=>t;function r(){return(r=Object.assign||function(t){for(var e=1;
                 line-height: 10rem;
                 color: green;
             }
-        `),h())}async httpGetAsync(t,e){return await fetch(t,e).then((t=>{if(!t.ok)throw t;return t.json()}))}async fetchDidCommInvite(){const t={headers:{Authorization:"Bearer "+this.auth.token}},e=this.entryPointUrl+"/did_connections?page=1";return(await this.httpGetAsync(e,t))["hydra:member"][0].invitation}async fetchDidCommInviteStatus(t){const e={headers:{Authorization:"Bearer "+this.auth.token}},i=this.entryPointUrl+"/did_connections/"+t;return(await this.httpGetAsync(i,e)).invitation}async onMethodSelect(t){const e=t.currentTarget.value;"did-comm"!==e||this.didCommInvite||(this.didCommInvite=await this.fetchDidCommInvite()),this.methodSelected=e}render(){if(!this.auth.token)return p(e||(e=n`
+        `),l())}async httpGetAsync(t,e){return await fetch(t,e).then((t=>{if(!t.ok)throw t;return t.json()}))}async fetchDidCommInvite(){const t={headers:{Authorization:"Bearer "+this.auth.token}},e=this.entryPointUrl+"/did_connections?page=1";return(await this.httpGetAsync(e,t))["hydra:member"][0].invitation}async fetchDidCommInviteStatus(t){const e={headers:{Authorization:"Bearer "+this.auth.token}},i=this.entryPointUrl+"/did_connections/"+t;return(await this.httpGetAsync(i,e)).invitation}async onMethodSelect(t){const e=t.currentTarget.value;"did-comm"!==e||this.didCommInvite||(this.didCommInvite=await this.fetchDidCommInvite()),this.methodSelected=e}render(){if(!this.auth.token)return p(e||(e=n`
                 <p>${0}</p>
-            `),g.t("please-login"));if(!this.authenticated){const t="eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE",e=btoa(this.didCommInvite),a="ethr-did"===this.methodSelected?t:e;return p(i||(i=n`
+            `),I.t("please-login"));if(!this.authenticated){const t="eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE",e=btoa(this.didCommInvite),a="ethr-did"===this.methodSelected?t:e;return p(i||(i=n`
             <div>
                 <label>${0}</label>
                 <br />
@@ -42,7 +42,7 @@ let t,e,i,a,n=t=>t;function r(){return(r=Object.assign||function(t){for(var e=1;
                 <li><a href="http://minerva.digital/" target="_blank">Minerva Wallet</a></li>
                 <li>Browser wallet</li>
             </ul>
-        `),g.t("did-auth.select-method"),(t=>this.onMethodSelect(t)),g.t("did-auth.scan"),a,a,g.t("wallets"))}return p(a||(a=n`
+        `),I.t("did-auth.select-method"),(t=>this.onMethodSelect(t)),I.t("did-auth.scan"),a,a,I.t("wallets"))}return p(a||(a=n`
             <span class="success">✔</span><br />
             
             <p>${0}</p>
@@ -51,5 +51,5 @@ let t,e,i,a,n=t=>t;function r(){return(r=Object.assign||function(t){for(var e=1;
                 Now you can export <a href="/dist/de/issue-diploma">diplomas</a>
                 or <a href="/dist/de/issue-grades">grades</a>.
             </p>
-        `),g.t("did-auth.success"))}}u("did-auth",v);
+        `),I.t("did-auth.success"))}}m("did-auth",g);
 //# sourceMappingURL=did-auth.js.map
