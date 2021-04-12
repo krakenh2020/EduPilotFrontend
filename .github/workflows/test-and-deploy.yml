@@ -76,12 +76,6 @@ jobs:
           yarn install
           yarn rollup -c --environment BUILD:kraken-local
 
-      - name: Deploy FallbackResource 🔀
-        run: |
-          REDIR='<html><head><meta http-equiv="refresh" content="0; url=https://krakenh2020.github.io/EduPilotPrototype1/vc4sm-frontend.html"></head><body></body></html>'
-          echo $REDIR > dist/index.html
-          echo $REDIR > dist/404.html
-
       - name: Docker Login
         uses: docker/login-action@v1
         with:
@@ -91,7 +85,7 @@ jobs:
           
       - name: Docker Build & Push Docker image
         run: |
-          export DOCKER_TAG=docker.pkg.github.com/krakenh2020/edupilotprototype1/kraken-edu_connector:latest
+          export DOCKER_TAG=docker.pkg.github.com/krakenh2020/edupilotfrontend/kraken-edu_connector:latest
           echo "Building branch: $GITHUB_REF"
           echo "      at commit: ${{ github.sha }}"
           echo "   triggered by: ${{ github.event_name}}"
@@ -134,7 +128,7 @@ jobs:
 
       - name: Deploy FallbackResource 🔀
         run: |
-          REDIR='<html><head><meta http-equiv="refresh" content="0; url=https://krakenh2020.github.io/EduPilotPrototype1/vc4sm-frontend.html"></head><body></body></html>'
+          REDIR='<html><head><meta http-equiv="refresh" content="0; url=https://krakenh2020.github.io/EduPilotFrontend/vc4sm-frontend.html"></head><body></body></html>'
           echo $REDIR > dist/index.html
           echo $REDIR > dist/404.html
 
