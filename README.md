@@ -1,9 +1,12 @@
-
 # KRAKEN Education Pilot - Uni Connector UI Preview
 
 [![Build, Test, Deploy](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml)
 
 A frontend for [an API](https://api.tugraz.at/) that provides education verifiable credentials to university students.
+
+- Deployment: https://github.com/krakenh2020/EduPilotDeploymentDocker
+- API Backend: https://github.com/krakenh2020/EduPilotBackend
+- API Bundle: https://github.com/PeterTheOne/vc4sm-bundle
 
 Part of the [**H2020 Project KRAKEN**](https://krakenh2020.eu/) and the [**Verifiable Credentials for Student Mobility**](https://api.ltb.io/show/BLUOR) project funded by TU Graz 
 as a technologically enhanced administration (TEA) marketplace project.
@@ -16,8 +19,7 @@ as a technologically enhanced administration (TEA) marketplace project.
 -->
 
 
-local development
------------------
+## Local development
 
 ```bash
 # get the source
@@ -44,8 +46,7 @@ yarn build
 Jump to <https://localhost:8001> and you should get a Single Sign On login page.
 
 
-license
--------
+## License
 
 LGPL-2.1-or-later License, Copyright (c) 2020-2021 Peter Grassberger & KRAKEN consortium
 
