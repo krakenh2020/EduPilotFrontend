@@ -1,16 +1,11 @@
+* [![Build, Test, Deploy](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml)
+
 # KRAKEN Education Pilot - Uni Connector UI Preview
 
 A frontend for [an API](https://api.tugraz.at/) that provides education verifiable credentials to university students.
 
-Part of the **H2020 Project KRAKEN** and the **Verifiable Credentials for Student Mobility** project funded by TU Graz 
+Part of the [**H2020 Project KRAKEN**](https://krakenh2020.eu/) and the [**Verifiable Credentials for Student Mobility**](https://api.ltb.io/show/BLUOR) project funded by TU Graz 
 as a technologically enhanced administration (TEA) marketplace project.
-
-
-online preview
---------------
-
-* The content of this repo is deployed to: https://krakenh2020.github.io/EduPilotPrototype1/
-* [![Build, Test, Deploy](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml)
 
 <!-- 
 * [![Quality Gate Status](https://sonari.atosresearch.eu/api/project_badges/measure?project=EduPilotPrototype1&metric=alert_status)](https://sonari.atosresearch.eu/dashboard?id=EduPilotPrototype1) 
