@@ -1,6 +1,7 @@
-* [![Build, Test, Deploy](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml)
 
 # KRAKEN Education Pilot - Uni Connector UI Preview
+
+[![Build, Test, Deploy](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/krakenh2020/EduPilotPrototype1/actions/workflows/test-and-deploy.yml)
 
 A frontend for [an API](https://api.tugraz.at/) that provides education verifiable credentials to university students.
 
