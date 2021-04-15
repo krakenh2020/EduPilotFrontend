@@ -70,6 +70,12 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
               padding: 0;
             }
 
+            .success {
+                font-size: 10rem;
+                line-height: 10rem;
+                color: green;
+            }
+
             .vc-list li {
               display: flex;
               justify-content: space-between;
@@ -194,29 +200,15 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
                 </ul>
             `;
         }
-        const qrData = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJ2YyI6eyJjcmVkZW50aWFsU3ViamVjdCI6eyJkZWdyZWUiOnsidHlwZSI6IkJhY2hlbG9yRGVncmVlIiwibmFtZSI6IkJhY2hlbG9yIG9mIFNjaWVuY2UgYW5kIEFydHMifX0sIkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIiwiaHR0cHM6Ly93d3cudzMub3JnLzIwMTgvY3JlZGVudGlhbHMvZXhhbXBsZXMvdjEiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIlVuaXZlcnNpdHlEZWdyZWVDcmVkZW50aWFsIl19LCJzdWIiOiIiLCJuYmYiOjE2MTI0MjY5OTYsImlzcyI6ImRpZDpldGhyOmFydGlzX3QxOjB4MWViOWEwZDk5YjE4Yjc4YjJmNjdhNDBmYTA5ZmRhODQ2MzVlZjk2NyJ9.7upzlCL3FJieO35TQa4_y9PlmEotXKphtRd9cstWt4Db2LICBl9RT3_aRl0aBRlHs29JJKQWEMSLwnWJOXsYAw';
 
         return html`
             <p>
                 ${i18n.t('issue-diploma.scan')}
             </p>
+
+            <span class="success">✔</span><br />
             
             <pre>${JSON.stringify(this.diplomas.filter((d) => d['@id'] === this.exportingId)[0], null, 2)}</pre>
-
-            <dbp-qr-code
-              data="${qrData}"
-              format="svg"
-              modulesize="5"
-              margin="1"
-            ></dbp-qr-code><br />
-
-            <p>
-                ${i18n.t('wallets')}
-            </p>
-            <ul>
-                <li><a href="http://minerva.digital/" target="_blank">Minerva Wallet</a></li>
-                <li>Browser wallet</li>
-            </ul>
         `;
     }
 }

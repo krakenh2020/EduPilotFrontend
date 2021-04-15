@@ -5,7 +5,7 @@
     "success": "Authentication success!"
   },
   "issue-diploma": {
-    "scan": "Scan QR code to import your diploma into a supported wallets."
+    "scan": "Check your wallet for your diploma credential."
   },
   "issue-grades": {
     "scan": "Scan QR code to import your course grade into a supported wallets."
