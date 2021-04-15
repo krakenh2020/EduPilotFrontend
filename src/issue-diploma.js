@@ -70,16 +70,16 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
               padding: 0;
             }
 
-            .success {
-                font-size: 10rem;
-                line-height: 10rem;
-                color: green;
-            }
-
             .vc-list li {
               display: flex;
               justify-content: space-between;
               margin-bottom: 1rem;
+            }
+
+            .success {
+                font-size: 10rem;
+                line-height: 10rem;
+                color: green;
             }
         `;
     }

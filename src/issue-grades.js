@@ -75,13 +75,78 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                 justify-content: space-between;
                 margin-bottom: 1rem;
             }
+
+            .success {
+                font-size: 10rem;
+                line-height: 10rem;
+                color: green;
+            }
         `;
     }
 
-    export(id) {
+    async triggerSendOffer(myDid, theirDid) {
+        const options = {
+            method: 'post',
+            headers: {
+                Authorization: "Bearer " + this.auth.token,
+                'Content-Type': 'application/ld+json'
+            },
+            body: JSON.stringify({
+                myDid,
+                theirDid,
+                status: 'requesting...'
+            })
+        };
+        const url = this.entryPointUrl + '/credential/send_offer';
+        const resp = await this.httpGetAsync(url, options);
+        return resp;
+    }
+
+    async acceptRequest(piid, id) {
+        // todo: don't send id via status field.
+        const options = {
+            method: 'post',
+            headers: {
+                Authorization: "Bearer " + this.auth.token,
+                'Content-Type': 'application/ld+json'
+            },
+            body: JSON.stringify({
+                myDid: piid,
+                theirDid: 'none',
+                status: id
+            })
+        };
+        const url = this.entryPointUrl + '/credential/accept_request';
+        const resp = await this.httpGetAsync(url, options);
+        return resp;
+    }
+
+    async export(id) {
         console.log('export');
-        this.exporting = true;
-        this.exportingId = id;
+
+        const myDID = sessionStorage.getItem('did-comm-MyDID');
+        const theirDID = sessionStorage.getItem('did-comm-TheirDID');
+
+        if (!myDID || !theirDID) {
+            alert('no connection :(');
+            return;
+        }
+
+        const res = await this.triggerSendOffer(myDID, theirDID);
+        console.log('triggerSendOffer', res);
+        const piid = JSON.parse(res.myDid).piid;
+
+        const invervalId = setInterval(async () => {
+            const res2 = await this.acceptRequest(piid, id);
+            if (res2.myDid !== '') {
+                console.log('request accepted');
+
+                clearInterval(invervalId);
+
+                this.exporting = true;
+                this.exportingId = id;
+            }
+        }, 1000);
     }
 
     async httpGetAsync(url, options) {
@@ -131,29 +196,15 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                 </ul>
             `;
         }
-        const qrData = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJ2YyI6eyJjcmVkZW50aWFsU3ViamVjdCI6eyJkZWdyZWUiOnsidHlwZSI6IkJhY2hlbG9yRGVncmVlIiwibmFtZSI6IkJhY2hlbG9yIG9mIFNjaWVuY2UgYW5kIEFydHMifX0sIkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIiwiaHR0cHM6Ly93d3cudzMub3JnLzIwMTgvY3JlZGVudGlhbHMvZXhhbXBsZXMvdjEiXSwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCIsIlVuaXZlcnNpdHlEZWdyZWVDcmVkZW50aWFsIl19LCJzdWIiOiIiLCJuYmYiOjE2MTI0MjY5OTYsImlzcyI6ImRpZDpldGhyOmFydGlzX3QxOjB4MWViOWEwZDk5YjE4Yjc4YjJmNjdhNDBmYTA5ZmRhODQ2MzVlZjk2NyJ9.7upzlCL3FJieO35TQa4_y9PlmEotXKphtRd9cstWt4Db2LICBl9RT3_aRl0aBRlHs29JJKQWEMSLwnWJOXsYAw';
 
         return html`
             <p>
                 ${i18n.t('issue-grades.scan')}
             </p>
 
-            <pre>${JSON.stringify(this.courseGrades.filter((c) => c['@id'] === this.exportingId)[0], null, 2)}</pre>
+            <span class="success">✔</span><br />
 
-            <dbp-qr-code
-              data="${qrData}"
-              format="svg"
-              modulesize="5"
-              margin="1"
-            ></dbp-qr-code><br />
-
-            <p>
-                ${i18n.t('wallets')}
-            </p>
-            <ul>
-                <li><a href="http://minerva.digital/" target="_blank">Minerva Wallet</a></li>
-                <li>Browser wallet</li>
-            </ul>
+            <pre>${JSON.stringify(this.courseGrades.filter((d) => d['@id'] === this.exportingId)[0], null, 2)}</pre>
         `;
     }
 }
