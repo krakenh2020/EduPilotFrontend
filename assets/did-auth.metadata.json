@@ -3,16 +3,16 @@
   "module_src": "did-auth.js",
   "routing_name": "did-auth",
   "name": {
-    "de": "Verifiziere deine Identität",
-    "en": "Verify your Identity"
+    "de": "Verbinde dein Wallet",
+    "en": "Connect your Wallet"
   },
   "short_name": {
-    "de": "Verifiziere deine Identität",
-    "en": "Verify your Identity"
+    "de": "Verbinde dein Wallet",
+    "en": "Connect your Wallet"
   },
   "description": {
-    "de": "Als erstes deine Identität verifizeren um als nächstes ein Abschlusszeugnis oder Note zu exportieren.",
-    "en": "First verify your identity to export a diploma or course grades next."
+    "de": "Als erstes verbinde dein Wallet um als nächstes ein Abschlusszeugnis oder Note zu exportieren.",
+    "en": "First connect your wallet to export a diploma or course grades next."
   },
   "subscribe": "lang:lang,entry-point-url:entry-point-url,auth:auth"
 }

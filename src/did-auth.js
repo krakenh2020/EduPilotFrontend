@@ -7,41 +7,7 @@ import * as commonStyles from '@dbp-toolkit/common/styles';
 import {AdapterLitElement} from '@dbp-toolkit/provider/src/adapter-lit-element';
 import QRCode from 'webcomponent-qr-code/qr-code';
 
-// todo: this should anyway happen in the backend..
-/*
-import { Credentials, SimpleSigner } from 'uport-credentials';
-import { Resolver } from 'did-resolver';
-import { getResolver } from 'ethr-did-resolver';
-
-// todo: use env vars for this.
-const chainRpc = '';
-const regiAddr = '';
-const regiNet = '';
-const appDid = '';
-const privKey = '';
-const discloseRqExpires = 600;
-
-const providerConfig = {
-    rpcUrl: chainRpc,
-    registry: regiAddr,
-    networks: [
-        { name: regiNet, rpcUrl: chainRpc },
-    ],
-};
-
-const resolver = new Resolver(getResolver(providerConfig));
-
-const signer = SimpleSigner(privKey.toStr());
-
-const credential = new Credentials({
-    did: appDid,
-    signer,
-    resolver,
-});
- */
-
 const i18n = createI18nInstance();
-
 
 class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
@@ -49,16 +15,37 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
         this.auth = {};
         this.entryPointUrl = '';
         this.lang = i18n.language;
-        // todo: get authentication status from api server.
         this.authenticated = false;
-        this.methodSelected = 'ethr-did';
+    }
 
+    static get scopedElements() {
+        return {
+            'dbp-icon': Icon,
+            'dbp-qr-code': QRCode
+        };
+    }
+
+    static get properties() {
+        return {
+            ...super.properties,
+            lang: { type: String },
+            auth: { type: Object },
+            entryPointUrl: { type: String, attribute: 'entry-point-url' },
+            authenticated: { type: Boolean, attribute: false },
+            didCommInvite: { type: String },
+            intervalId: { type: Number },
+        };
+    }
+
+    async connectedCallback() {
+        super.connectedCallback();
+
+        this.didCommInvite = await this.fetchDidCommInvite();
 
         this.intervalId = setInterval(async () => {
-            if (this.methodSelected !== 'did-comm') {
+            if (this.didCommInvite === null) {
                 return;
             }
-
             const didCommInviteDecoded = JSON.parse(this.didCommInvite);
             const inviteId = didCommInviteDecoded.invitation['@id'];
             console.log(inviteId);
@@ -77,30 +64,6 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             }
 
         }, 1000);
-    }
-
-    static get scopedElements() {
-        return {
-            'dbp-icon': Icon,
-            'dbp-qr-code': QRCode
-        };
-    }
-
-    static get properties() {
-        return {
-            ...super.properties,
-            lang: { type: String },
-            authenticated: { type: Boolean, attribute: false },
-            methodSelected: { type: String },
-            didCommInvite: { type: String },
-            intervalId: { type: Number },
-            auth: { type: Object },
-            entryPointUrl: { type: String, attribute: 'entry-point-url' },
-        };
-    }
-
-    connectedCallback() {
-        super.connectedCallback();
     }
 
     disconnectedCallback() {
@@ -131,6 +94,17 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
                 font-size: 10rem;
                 line-height: 10rem;
                 color: green;
+            }
+
+            .qr-wrap {
+                width: fit-content;
+                text-align: center;
+            }
+            
+            #copyText {
+                position: absolute;
+                left: 10000rem;
+                opacity: 0;
             }
         `;
     }
@@ -166,18 +140,15 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
         return resp.invitation;
     }
 
-    async onMethodSelect(e) {
-        const newMethod = e.currentTarget.value;
-        if (newMethod === 'did-comm' && !this.didCommInvite) {
-            this.didCommInvite = await this.fetchDidCommInvite();
-        }
-        this.methodSelected = newMethod;
+    async onCopy(event) {
+        event.preventDefault();
+        const copyText = event.currentTarget.previousElementSibling;
+        copyText.select();
+        copyText.setSelectionRange(0, 1000000);
+        document.execCommand('copy');
     }
 
     // todo: check if already verified.. (polling)
-    // uport:
-    // todo: use uport-credentials to generate qr code...
-    // todo: (is the uport wallet supported?)
     // todo: re-authenticate
     // todo: fix link to other pages.. (use router, without page reload.)
     render() {
@@ -188,42 +159,31 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
         }
 
         if (!this.authenticated) {
-            const qrDataUport = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE';
-            const qrDataDidComm = btoa(this.didCommInvite);
-            const qrData = this.methodSelected === 'ethr-did' ? qrDataUport : qrDataDidComm;
-            const textData = this.methodSelected === 'ethr-did' ? qrDataUport : this.didCommInvite;
+            const qrData = btoa(this.didCommInvite);
+
+            if (!this.didCommInvite) {
+                return html`
+                  loading...
+                `;
+            }
 
             return html`
-            <div>
-                <label>${i18n.t('did-auth.select-method')}</label>
-                <br />
-                <select @change="${(e) => this.onMethodSelect(e)}">
-                    <option value="ethr-did">Ethr-DID (uport shareReq) (todo)</option>
-                    <option value="did-comm">DidComm (aries-framework-go)</option>
-                </select>
-            </div>
-            
             <p>
                 ${i18n.t('did-auth.scan')}
             </p>
             
-            <dbp-qr-code
-                data="${qrData}"
-                format="svg"
-                modulesize="5"
-                margin="1"
-            ></dbp-qr-code><br />
-
-            <textarea rows="5" cols="50">${qrData}</textarea>
-            <textarea rows="5" cols="50">${textData}</textarea>
-            
-            <p>
-                ${i18n.t('wallets')}
-            </p>
-            <ul>
-                <li><a href="http://minerva.digital/" target="_blank">Minerva Wallet</a></li>
-                <li>Browser wallet</li>
-            </ul>
+            <div class="qr-wrap">
+                <dbp-qr-code
+                    data="${qrData}"
+                    format="svg"
+                    modulesize="5"
+                    margin="1"
+                ></dbp-qr-code>
+                <div>
+                    <input id="copyText" type="text" value="${this.didCommInvite}" />
+                    <a href="#" @click="${(e) => this.onCopy(e)}">Copy to clipboard.</a>
+                </div>
+            </div>
         `;
         }
 
