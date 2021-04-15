@@ -5,7 +5,7 @@
     "success": "Erfolgreich Authentifiziert!"
   },
   "issue-diploma": {
-    "scan": "Scanne den QR code um dein Zeugnis in eines der unterstützen wallets zu importieren."
+    "scan": "Schaue in den wallet um dein Zeugnis Credential zu sehen."
   },
   "issue-grades": {
     "scan": "Scanne den QR code um deine Noten in eines der unterstützen wallets zu importieren."
