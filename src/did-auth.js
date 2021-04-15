@@ -191,6 +191,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             const qrDataUport = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NkstUiJ9.eyJpYXQiOjE2MTI0MjQ2MzUsImV4cCI6MTYxMjQyNTIzNSwicmVxdWVzdGVkIjpbXSwiY2FsbGJhY2siOiJodHRwOi8vNzQwNjc2NDIubmdyb2suaW8vIiwidHlwZSI6InNoYXJlUmVxIiwiaXNzIjoiZGlkOmV0aHI6YXJ0aXNfdDE6MHhjMjExN0EzMzFiMzE5NWI2NTQ1NzdCQjU1OTY1QzhlNjlGYzU5MTliIn0.M3bQmSGf0ZCQCX74LFPkr-a5eEp8yopuxWQx33RQTTGRMYu9nXAoJw_DmS00Jxx32aCGJ6fVflXprOgsAtVM5AE';
             const qrDataDidComm = btoa(this.didCommInvite);
             const qrData = this.methodSelected === 'ethr-did' ? qrDataUport : qrDataDidComm;
+            const textData = this.methodSelected === 'ethr-did' ? qrDataUport : this.didCommInvite;
 
             return html`
             <div>
@@ -212,8 +213,9 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
                 modulesize="5"
                 margin="1"
             ></dbp-qr-code><br />
-            
-            <pre>${qrData}</pre>
+
+            <textarea rows="5" cols="50">${qrData}</textarea>
+            <textarea rows="5" cols="50">${textData}</textarea>
             
             <p>
                 ${i18n.t('wallets')}
