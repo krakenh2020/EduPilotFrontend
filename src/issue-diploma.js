@@ -102,7 +102,8 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         return resp;
     }
 
-    async acceptRequest(piid) {
+    async acceptRequest(piid, id) {
+        // todo: don't send id via status field.
         const options = {
             method: 'post',
             headers: {
@@ -112,7 +113,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             body: JSON.stringify({
                 myDid: piid,
                 theirDid: 'none',
-                status: 'requesting accept...'
+                status: id
             })
         };
         const url = this.entryPointUrl + '/credential/accept_request';
@@ -136,7 +137,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         const piid = JSON.parse(res.myDid).piid;
 
         const invervalId = setInterval(async () => {
-            const res2 = await this.acceptRequest(piid);
+            const res2 = await this.acceptRequest(piid, id);
             if (res2.myDid !== '') {
                 console.log('request accepted');
 
