@@ -74,6 +74,14 @@ switch (build) {
     //keyCloakClientId = 'auth-iaik-kraken-dev-local';
     keyCloakClientId = 'auth-dev-mw-frontend-local';
     break;
+  case 'kraken-iaik':
+    basePath = '/';
+    entryPointURL = 'https://kraken-edu-api.iaik.tugraz.at'; // "kraken-edu-api.{{ nginx_zone }}"
+    keyCloakServer = 'auth-dev.tugraz.at';
+    keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
+    //keyCloakClientId = 'auth-iaik-kraken-dev-local';
+    keyCloakClientId = 'auth-dev-kraken-frontend-iaik';
+    break;
   case 'test':
     break;
   default:
