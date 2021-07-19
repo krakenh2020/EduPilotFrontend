@@ -28,9 +28,9 @@
     "university"
   ],
   "author": "Peter Grassberger & Stefan More",
-  "homepage": "https://github.com/krakenh2020/EduPilotPrototype1",
+  "homepage": "https://github.com/krakenh2020/EduPilotFrontend",
   "bugs": {
-    "url": "https://github.com/krakenh2020/EduPilotPrototype1/issues"
+    "url": "https://github.com/krakenh2020/EduPilotFrontend/issues"
   },
   "dependencies": {
     "@dbp-toolkit/app-shell": "0.2.2",
