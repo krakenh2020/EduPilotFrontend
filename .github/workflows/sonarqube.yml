@@ -7,6 +7,16 @@ jobs:
   sonarqube-scan:
     runs-on: ubuntu-latest
     steps:
+      - name: Configure GIT credential helper
+        env:
+          TUG_GITLAB_ACCESSTOKEN: ${{ secrets.TUG_GITLAB_ACCESSTOKEN }}
+        run: |
+          mkdir -p ~/.config/git/
+          touch ~/.config/git/credentials
+          chmod 600 ~/.config/git/credentials
+          echo "$TUG_GITLAB_ACCESSTOKEN" >> ~/.config/git/credentials
+          git config --global credential.helper 'store --file ~/.config/git/credentials'
+
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.4
         with:
@@ -32,4 +42,9 @@ jobs:
           host: ${{ secrets.SONARQUBE_HOST }}
           login: ${{ secrets.SONARQUBE_TOKEN }}
           projectKey: EduPilotPrototype1
-          projectVersion: 0.0.1
+          projectVersion: 0.1.1
+
+      - name: Cleanup GIT credentials
+        if: ${{ always() }}
+        run: |
+          rm ~/.config/git/credentials
