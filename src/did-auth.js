@@ -124,7 +124,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
                 Authorization: "Bearer " + this.auth.token
             }
         };
-        const url = this.entryPointUrl + '/did_connections?page=1';
+        const url = this.entryPointUrl + '/did-connections?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'][0].invitation;
     }
@@ -135,7 +135,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
                 Authorization: "Bearer " + this.auth.token
             }
         };
-        const url = this.entryPointUrl + '/did_connections/' + inviteId;
+        const url = this.entryPointUrl + '/did-connections/' + inviteId;
         const resp = await this.httpGetAsync(url, options);
         return resp.invitation;
     }

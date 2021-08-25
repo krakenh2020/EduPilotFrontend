@@ -164,7 +164,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                 Authorization: "Bearer " + this.auth.token
             }
         };
-        const url = this.entryPointUrl + '/course_grades?page=1';
+        const url = this.entryPointUrl + '/course-grades?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'];
     }
