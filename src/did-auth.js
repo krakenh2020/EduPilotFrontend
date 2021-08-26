@@ -46,6 +46,8 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             if (this.didCommInvite === null) {
                 return;
             }
+            console.log('Waiting for invite to get accepted by student ...');
+
             const didCommInviteDecoded = JSON.parse(this.didCommInvite);
             const inviteId = didCommInviteDecoded.invitation['@id'];
             console.log(inviteId);
@@ -194,8 +196,8 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             <p>${i18n.t('did-auth.success')}</p>
             
             <p>
-                Now you can export <a href="/dist/de/issue-diploma">diplomas</a>
-                or <a href="/dist/de/issue-grades">grades</a>.
+                Now you can export <a href="/de/issue-diploma">diplomas</a>
+                or <a href="/de/issue-grades">grades</a>.
             </p>
         `;
     }
