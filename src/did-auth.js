@@ -196,8 +196,8 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             <p>${i18n.t('did-auth.success')}</p>
             
             <p>
-                Now you can export <a href="/de/issue-diploma">diplomas</a>
-                or <a href="/de/issue-grades">grades</a>.
+                Now you can export diplomas
+                and grades.
             </p>
         `;
     }
