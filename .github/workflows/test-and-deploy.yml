@@ -85,7 +85,6 @@ jobs:
       - name: Fix app-shell URLs 👷
         run: |
           APPSHELL="./vendor/toolkit/packages/app-shell/src/app-shell.js"
-          sed -i -e 's:datenschutz.tugraz.at/erklaerung:github.com/site/privacy:g' $APPSHELL
           sed -i -e 's:www.tugraz.at/en/about-this-page/legal-notice/:krakenh2020.eu/legal-notice:g' $APPSHELL
           sed -i -e 's:www.tugraz.at/ueber-diese-seite/impressum/:krakenh2020.eu/legal-notice:g' $APPSHELL
           sed -i -e 's:it-support@tugraz.at:smore@tugraz.at:g' $APPSHELL
@@ -149,7 +148,6 @@ jobs:
       - name: Fix app-shell URLs 👷
         run: |
           APPSHELL="./vendor/toolkit/packages/app-shell/src/app-shell.js"
-          sed -i -e 's:datenschutz.tugraz.at/erklaerung:github.com/site/privacy:g' $APPSHELL
           sed -i -e 's:www.tugraz.at/en/about-this-page/legal-notice/:krakenh2020.eu/legal-notice:g' $APPSHELL
           sed -i -e 's:www.tugraz.at/ueber-diese-seite/impressum/:krakenh2020.eu/legal-notice:g' $APPSHELL
           sed -i -e 's:it-support@tugraz.at:smore@tugraz.at:g' $APPSHELL
