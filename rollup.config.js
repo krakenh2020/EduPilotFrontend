@@ -77,7 +77,7 @@ switch (build) {
   case 'kraken-iaik':
     basePath = '/';
     entryPointURL = 'https://kraken-edu-api.iaik.tugraz.at'; // "kraken-edu-api.{{ nginx_zone }}"
-    keyCloakServer = 'auth-test.tugraz.at';
+    keyCloakServer = 'auth-demo.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
     //keyCloakClientId = 'auth-iaik-kraken-dev-local';
     keyCloakClientId = 'kraken_edu_iaik_tugraz_at';
