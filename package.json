@@ -18,7 +18,7 @@
     "test-full": "rollup -c --environment FORCE_FULL,BUILD:test && karma start --singleRun",
     "lint": "eslint ."
   },
-  "repository": "git+https://github.com/krakenh2020/EduPilotPrototype1.git",
+  "repository": "git+https://github.com/krakenh2020/EduPilotFrontend.git",
   "keywords": [
     "education",
     "ssi",
