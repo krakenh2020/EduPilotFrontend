@@ -2,7 +2,8 @@
   "did-auth": {
     "select-method": "Wähle DID-Methode/Authentifizierung:",
     "scan": "Scanne den QR Code mit deiner SSI Identity Wallet am Smartphone.",
-    "download": "Wenn du noch keine SSI Identity Wallet auf deinem Smartphone installiert hast, klicke hier um einfach die KRAKEN Wallet App für Android zu installieren.",
+    "download1": "Wenn du noch keine SSI Identity Wallet auf deinem Smartphone installiert hast",
+    "download2": "klicke hier um einfach die KRAKEN Wallet App für Android zu installieren",
     "success": "Wallet App erfolgreich verlinkt!"
   },
   "issue-diploma": {

@@ -2,7 +2,8 @@
   "did-auth": {
     "select-method": "Select DID-Method/Authentication:",
     "scan": "Scan QR code using your SSI Identity wallet on your smartphone.",
-    "download": "If you don't have any SSI Identity wallet on your phone, click here to install the KRAKEN wallet app for Android.", 
+    "download1": "If you don't have any SSI Identity wallet on your phone,", 
+    "download2": "click here to install the KRAKEN wallet app for Android.", 
     "success": "Success! Wallet app connected!"
   },
   "issue-diploma": {

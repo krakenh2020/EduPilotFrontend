@@ -175,7 +175,7 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             </p>
 
             <p>
-                <a href="https://kraken-edu.iaik.tugraz.at/kraken.apk">${i18n.t('did-auth.download')}</a>
+                ${i18n.t('did-auth.download1')} <a href="https://kraken-edu.iaik.tugraz.at/kraken.apk">${i18n.t('did-auth.download2')}</a>.
             </p>
             
             <div class="qr-wrap">
