@@ -23,7 +23,7 @@ let t,e,n,i,a,r=t=>t;function s(){return(s=Object.assign||function(t){for(var e=
             }
         `),l())}async httpGetAsync(t,e){return await fetch(t,e).then((t=>{if(!t.ok)throw t;return t.json()}))}async fetchDidCommInvite(){const t={headers:{Authorization:"Bearer "+this.auth.token}},e=this.entryPointUrl+"/did-connections?page=1";return(await this.httpGetAsync(e,t))["hydra:member"][0].invitation}async fetchDidCommInviteStatus(t){const e={headers:{Authorization:"Bearer "+this.auth.token}},n=this.entryPointUrl+"/did-connections/"+t;return(await this.httpGetAsync(n,e)).invitation}async onCopy(t){t.preventDefault();const e=t.currentTarget.previousElementSibling;e.select(),e.setSelectionRange(0,1e6),document.execCommand("copy")}render(){if(!this.auth.token)return u(e||(e=r`
                 <p>${0}</p>
-            `),y.t("please-login"));if(!this.authenticated){const t=btoa(this.didCommInvite);return this.didCommInvite?u(i||(i=r`
+            `),y.t("please-login"));if(!this.authenticated){const t=this.didCommInvite;return this.didCommInvite?u(i||(i=r`
             <p>
                 ${0}
             </p>
