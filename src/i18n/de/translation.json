@@ -1,14 +1,14 @@
 {
   "did-auth": {
     "select-method": "Wähle DID-Methode/Authentifizierung:",
-    "scan": "Scanne den QR code um deine Identität zu bestätigen, verwende dafür eines der unterstützten wallets.",
-    "success": "Erfolgreich Authentifiziert!"
+    "scan": "Scanne den QR Code mit deiner SSI Identity Wallet am Smartphone. Wenn du noch keine SSI Identity Wallet hast installiere einfach die <a href='https://kraken-edu.iaik.tugraz.at/kraken.apk'>KRAKEN Wallet app für Android</a>.",
+    "success": "Walelt App erfolgreich verlinkt!"
   },
   "issue-diploma": {
-    "scan": "Schaue in den wallet um dein Zeugnis Credential zu sehen."
+    "scan": "Schaue in die Wallet auf deinem Smartphone um dein Zeugnis Credential zu sehen."
   },
   "issue-grades": {
-    "scan": "Scanne den QR code um deine Noten in eines der unterstützen wallets zu importieren."
+    "scan": "Scanne den QR Code um deine LV Noten in deine Wallet zu importieren."
   },
   "verify": {
 

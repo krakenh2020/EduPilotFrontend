@@ -128,7 +128,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         const theirDID = sessionStorage.getItem('did-comm-TheirDID');
 
         if (!myDID || !theirDID) {
-            alert('no connection :(');
+            alert('No wallet app connected. Please connect your wallet first.');
             return;
         }
 
