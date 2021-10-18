@@ -29,7 +29,7 @@ let t,e,n,i,a,r=t=>t;function s(){return(s=Object.assign||function(t){for(var e=
             </p>
 
             <p>
-                <a href="https://kraken-edu.iaik.tugraz.at/kraken.apk">${0}</a>
+                ${0} <a href="https://kraken-edu.iaik.tugraz.at/kraken.apk">${0}</a>.
             </p>
             
             <div class="qr-wrap">
@@ -44,7 +44,7 @@ let t,e,n,i,a,r=t=>t;function s(){return(s=Object.assign||function(t){for(var e=
                     <a href="#" @click="${0}">Copy to clipboard.</a>
                 </div>
             </div>
-        `),y.t("did-auth.scan"),y.t("did-auth.download"),t,this.didCommInvite,(t=>this.onCopy(t))):u(n||(n=r`
+        `),y.t("did-auth.scan"),y.t("did-auth.download1"),y.t("did-auth.download2"),t,this.didCommInvite,(t=>this.onCopy(t))):u(n||(n=r`
                   loading...
                 `))}return u(a||(a=r`
             <span class="success">✔</span><br />
