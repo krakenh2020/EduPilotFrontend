@@ -1,7 +1,8 @@
 {
   "did-auth": {
     "select-method": "Select DID-Method/Authentication:",
-    "scan": "Scan QR code using your SSI Identity wallet on your smartphone. If you don't have any SSI Identity wallet, install <a href='https://kraken-edu.iaik.tugraz.at/kraken.apk'>the KRAKEN wallet app for Android</a>.", 
+    "scan": "Scan QR code using your SSI Identity wallet on your smartphone.",
+    "download": "If you don't have any SSI Identity wallet on your phone, click here to install the KRAKEN wallet app for Android.", 
     "success": "Success! Wallet app connected!"
   },
   "issue-diploma": {

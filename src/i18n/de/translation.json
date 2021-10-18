@@ -1,8 +1,9 @@
 {
   "did-auth": {
     "select-method": "Wähle DID-Methode/Authentifizierung:",
-    "scan": "Scanne den QR Code mit deiner SSI Identity Wallet am Smartphone. Wenn du noch keine SSI Identity Wallet hast installiere einfach die <a href='https://kraken-edu.iaik.tugraz.at/kraken.apk'>KRAKEN Wallet app für Android</a>.",
-    "success": "Walelt App erfolgreich verlinkt!"
+    "scan": "Scanne den QR Code mit deiner SSI Identity Wallet am Smartphone.",
+    "download": "Wenn du noch keine SSI Identity Wallet auf deinem Smartphone installiert hast, klicke hier um einfach die KRAKEN Wallet App für Android zu installieren.",
+    "success": "Wallet App erfolgreich verlinkt!"
   },
   "issue-diploma": {
     "scan": "Schaue in die Wallet auf deinem Smartphone um dein Zeugnis Credential zu sehen."

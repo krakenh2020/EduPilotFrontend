@@ -173,6 +173,10 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
             <p>
                 ${i18n.t('did-auth.scan')}
             </p>
+
+            <p>
+                <a href="https://kraken-edu.iaik.tugraz.at/kraken.apk">${i18n.t('did-auth.download')}</a>
+            </p>
             
             <div class="qr-wrap">
                 <dbp-qr-code
