@@ -161,7 +161,9 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
         }
 
         if (!this.authenticated) {
-            const qrData = btoa(this.didCommInvite);
+            //const qrData = btoa(this.didCommInvite);
+            // BUG 2021-10-18: Our QR Code contains the base64 encoded JSON structure, but Atos' wallet assumes it contains the plain JSON (without b64) ...
+            const qrData = this.didCommInvite;
 
             if (!this.didCommInvite) {
                 return html`
