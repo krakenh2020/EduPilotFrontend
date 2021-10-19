@@ -84,7 +84,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         `;
     }
 
-    async triggerSendOffer(myDid, theirDid) {
+    async triggerSendOffer(myDid, theirDid, id) {
         const options = {
             method: 'post',
             headers: {
@@ -94,7 +94,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             body: JSON.stringify({
                 myDid,
                 theirDid,
-                status: 'requesting...'
+                status: id
             })
         };
         const url = this.entryPointUrl + '/credential/send_offer';
@@ -122,7 +122,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async export(id) {
-        console.log('export');
+        console.log('export diploma', id);
 
         const myDID = sessionStorage.getItem('did-comm-MyDID');
         const theirDID = sessionStorage.getItem('did-comm-TheirDID');
@@ -132,7 +132,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             return;
         }
 
-        const res = await this.triggerSendOffer(myDID, theirDID);
+        const res = await this.triggerSendOffer(myDID, theirDID, id);
         console.log('triggerSendOffer', res);
         const piid = JSON.parse(res.myDid).piid;
 
