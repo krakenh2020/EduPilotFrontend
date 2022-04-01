@@ -9,7 +9,7 @@ import QRCode from 'webcomponent-qr-code/qr-code';
 
 const i18n = createI18nInstance();
 
-class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
+export class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
     constructor() {
         super();
         this.auth = {};
@@ -112,20 +112,25 @@ class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async httpGetAsync(url, options) {
-        let response = await fetch(url, options).then(result => {
-            if (!result.ok) throw result;
-            return result.json();
-        });
-
-        return response;
+        console.log('httpGetAsync', url);
+        const result = await fetch(url, options);
+        if (!result.ok)
+            throw Error(url+' '+result.status+' '+result.statusText); 
+        return result.json();
     }
 
     async fetchDidCommInvite() {
-        const options = {
-            headers: {
-                Authorization: "Bearer " + this.auth.token
-            }
-        };
+        console.log('fetchDidCommInvite');
+        let options = {}
+        if(this.auth.token) {
+            options = {
+                headers: {
+                    Authorization: "Bearer " + this.auth.token
+                }
+            };
+            console.log('fetchDidCommInvite.options', options);
+        } 
+        
         const url = this.entryPointUrl + '/did-connections?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'][0].invitation;
