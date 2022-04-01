@@ -121,7 +121,7 @@ export class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
 
     async fetchDidCommInvite() {
         console.log('fetchDidCommInvite');
-        let options = {}
+        let options = {};
         if(this.auth.token) {
             options = {
                 headers: {

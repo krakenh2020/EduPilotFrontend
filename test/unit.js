@@ -63,7 +63,7 @@ suite('did-auth basics', () => {
     let inviteStatus;
     try {
       inviteStatus = await node.fetchDidCommInviteStatus(inviteid);
-      fail();
+      assert.fail();
     } catch(e) {
       // this is expected since invite not accepted by student 
     }
