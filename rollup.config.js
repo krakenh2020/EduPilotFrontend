@@ -32,7 +32,7 @@ const watch = process.env.ROLLUP_WATCH === 'true';
 const buildFull = (!watch && build !== 'test') || (process.env.FORCE_FULL !== undefined);
 const matomoUrl = 'https://analytics.tugraz.at/';
 
-console.log("build: " + build);
+console.log("rollup build: " + build);
 let basePath = '';
 let entryPointURL = '';
 let keyCloakServer = '';
@@ -75,14 +75,13 @@ switch (build) {
     keyCloakClientId = 'auth-dev-mw-frontend-local';
     break;
   case 'kraken-iaik':
+  case 'test':
     basePath = '/';
     entryPointURL = 'https://kraken-edu-api.iaik.tugraz.at'; // "kraken-edu-api.{{ nginx_zone }}"
     keyCloakServer = 'auth-demo.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
     //keyCloakClientId = 'auth-iaik-kraken-dev-local';
     keyCloakClientId = 'kraken_edu_iaik_tugraz_at';
-    break;
-  case 'test':
     break;
   default:
     console.error('Unknown build environment: ' + build);
