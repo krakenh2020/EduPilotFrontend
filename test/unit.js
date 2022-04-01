@@ -16,6 +16,10 @@ suite('did-auth basics', () => {
     node.remove();
   });
 
+  test('assert tests are working', () => {
+    assert(true);
+  });
+
   test('should render', () => {
     assert(!!node.shadowRoot);
   });
