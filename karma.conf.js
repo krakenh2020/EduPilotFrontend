@@ -1,10 +1,13 @@
+process.env.CHROME_BIN = require('puppeteer').executablePath()
+
 module.exports = function(config) {
   config.set({
     basePath: 'dist',
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'chai'],
     plugins: [
       'karma-coverage',
       'karma-mocha',
+      'karma-chai',
       require('karma-chrome-launcher'),
       require('karma-firefox-launcher'),
       require('karma-sonarqube-reporter'),
@@ -22,7 +25,7 @@ module.exports = function(config) {
       'src/**/*.js': ['coverage']
     },
     autoWatch: true,
-    browsers: ['ChromeHeadlessNoSandbox', 'FirefoxHeadless'],
+    browsers: ['ChromeHeadless', 'FirefoxHeadless'],
     customLaunchers: {
         ChromeHeadlessNoSandbox: {
         base: 'ChromeHeadless',
