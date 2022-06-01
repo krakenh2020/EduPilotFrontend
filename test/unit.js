@@ -60,14 +60,14 @@ suite('did-auth basics', () => {
     assert.isNotEmpty(inviteid, 'invite has no @ID');
     console.log('inviteid:', inviteid);
 
-    // let inviteStatus;
-    // try {
-    //   inviteStatus = await node.fetchDidCommInviteStatus(inviteid);
-    //   assert.fail();
-    // } catch(e) {
-    //   // this is expected since invite not accepted by student 
-    // }
-    // assert.notExists(inviteStatus);
+    let inviteStatus;
+    try {
+      inviteStatus = await node.fetchDidCommInviteStatus(inviteid);
+      assert.fail();
+    } catch(e) {
+      // this is expected since invite not accepted by student 
+    }
+    assert.notExists(inviteStatus);
 
   });
 });
