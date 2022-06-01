@@ -52,6 +52,7 @@ jobs:
       - name: test output
         run: |
           ls
+          ls reports
 
       - name: SonarQube Scan 🚑
         uses: kitabisa/sonarqube-action@master
