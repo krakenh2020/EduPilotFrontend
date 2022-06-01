@@ -53,6 +53,14 @@ jobs:
         run: |
           ls
 
+      - name: SonarQube Scan 🚑
+        uses: kitabisa/sonarqube-action@master
+        with:
+          host: ${{ secrets.SONARQUBE_HOST }}
+          login: ${{ secrets.SONARQUBE_TOKEN }}
+          projectKey: EduPilotPrototype1
+          projectVersion: 2022.3.1
+
       - name: Test Full 🔥
         run: |
           yarn test-full
