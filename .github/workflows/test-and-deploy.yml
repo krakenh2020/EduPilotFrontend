@@ -51,8 +51,7 @@ jobs:
 
       - name: test output
         run: |
-          ls
-          ls reports
+          ls dist/coverage/*
 
       - name: SonarQube Scan 🚑
         uses: kitabisa/sonarqube-action@master
