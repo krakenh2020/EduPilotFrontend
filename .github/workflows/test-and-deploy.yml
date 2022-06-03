@@ -60,9 +60,9 @@ jobs:
           host: ${{ secrets.SONARQUBE_HOST }}
           login: ${{ secrets.SONARQUBE_TOKEN }}
 
-      - name: Test Full 🔥
-        run: |
-          yarn test-full
+      # - name: Test Full 🔥
+      #   run: |
+      #     yarn test-full
 
       - name: Cleanup GIT credentials
         if: ${{ always() }}
