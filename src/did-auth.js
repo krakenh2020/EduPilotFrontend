@@ -119,8 +119,7 @@ export class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
         return result.json();
     }
 
-    async fetchDidCommInvite() {
-        console.log('fetchDidCommInvite');
+    getAuthOptions() {
         let options = {};
         if(this.auth.token) {
             options = {
@@ -128,8 +127,13 @@ export class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
                     Authorization: "Bearer " + this.auth.token
                 }
             };
-            console.log('fetchDidCommInvite.options', options);
         } 
+        return options;
+    }
+
+    async fetchDidCommInvite() {
+        console.log('fetchDidCommInvite');
+        let options = this.getAuthOptions();
         
         const url = this.entryPointUrl + '/did-connections?page=1';
         const resp = await this.httpGetAsync(url, options);
@@ -137,15 +141,7 @@ export class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async fetchDidCommInviteStatus(inviteId) {
-        let options = {};
-        if(this.auth.token) {
-            options = {
-                headers: {
-                    Authorization: "Bearer " + this.auth.token
-                }
-            };
-            console.log('fetchDidCommInviteStatus.options', options);
-        } 
+        let options = this.getAuthOptions();
         const url = this.entryPointUrl + '/did-connections/' + inviteId;
         const resp = await this.httpGetAsync(url, options);
         return resp.invitation;
