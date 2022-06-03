@@ -5,7 +5,7 @@ import '../src/issue-diploma';
 import '../src/issue-grades';
 import '../src/vc4sm-frontend.js';
 
-suite('did-auth basics', () => {
+suite('did-auth', () => {
   let node;
 
   suiteSetup(async () => {
@@ -48,7 +48,6 @@ suite('did-auth basics', () => {
   test('should fetch an invite from server', async () => {
     let html1 = node.render();
     assert.isNotEmpty(html1);
-    console.log('render before auth', html1);
 
     await node.connectedCallback();
     //let invite = await node.fetchDidCommInvite();
@@ -106,44 +105,123 @@ suite('did-auth basics', () => {
 
     let html2 = node.render();
     assert.isNotEmpty(html2);
-    console.log('render after auth', html2);
   });
 });
 
 
-suite('issue-diploma basics', () => {
+
+suite('issue-diploma', () => {
   let node;
 
   suiteSetup(async () => {
     node = document.createElement('issue-diploma');
     document.body.appendChild(node);
     await node.updateComplete;
+
+    node.entryPointUrl = 'https://kraken-edu-api.iaik.tugraz.at';
   });
 
   suiteTeardown(() => {
     node.remove();
   });
 
+  test('should have DID connection', () => {
+    const myDID = sessionStorage.getItem('did-comm-MyDID');
+    const theirDID = sessionStorage.getItem('did-comm-TheirDID');
+
+    assert.isNotEmpty(myDID, 'No wallet app connected?');
+    assert.isNotEmpty(theirDID, 'No wallet app connected?');
+  });
+
   test('should render', () => {
     assert.isNotNull(node.shadowRoot);
+  });
+
+  test('should display diplomas', async () => {
+    let items = await node.fetchDiplomas();
+    assert.isNotNull(items, 'no diplomas loaded for issuing ...');
+    console.log('items', items);
+  });
+
+  test('should export diploma', async () => {
+    
+    assert.isFalse(node.exporting);
+
+    await node.export('/diplomas/bsc1');
+
+    await new Promise(r => setTimeout(r, 1000));
+    assert.isFalse(node.exporting, 'cred offer already accepted by student');
+
+
+    let student_get_offers = await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/actions');
+    assert.isNotEmpty(student_get_offers);
+    console.log('student_get_offers', student_get_offers);
+
+    student_get_offers.actions.forEach(async action => 
+      await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/' + action.PIID + '/accept-offer', { method: 'POST'})
+      );
+
+    await new Promise(r => setTimeout(r, 3000));
+    assert.isTrue(node.exporting, 'cred offer not yet accepted by student');
+    assert.isNotEmpty(node.exportingId);
   });
 });
 
 
-suite('issue-grades basics', () => {
+
+suite('issue-grades', () => {
   let node;
 
   suiteSetup(async () => {
     node = document.createElement('issue-grades');
     document.body.appendChild(node);
     await node.updateComplete;
+
+    node.entryPointUrl = 'https://kraken-edu-api.iaik.tugraz.at';
   });
 
   suiteTeardown(() => {
     node.remove();
   });
 
+  test('should have DID connection', () => {
+    const myDID = sessionStorage.getItem('did-comm-MyDID');
+    const theirDID = sessionStorage.getItem('did-comm-TheirDID');
+
+    assert.isNotEmpty(myDID, 'No wallet app connected?');
+    assert.isNotEmpty(theirDID, 'No wallet app connected?');
+  });
+
   test('should render', () => {
     assert.isNotNull(node.shadowRoot);
+  });
+
+  test('should display grades', async () => {
+    let items = await node.fetchCourseGrades();
+    assert.isNotNull(items, 'no grades loaded for issuing ...');
+    console.log('items', items);
+  });
+
+  test('should export grade', async () => {
+    
+    assert.isFalse(node.exporting);
+
+    await node.export('/course-grades/hcivc');
+
+    await new Promise(r => setTimeout(r, 1000));
+    assert.isFalse(node.exporting, 'cred offer already accepted by student');
+
+
+    let student_get_offers = await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/actions');
+    assert.isNotEmpty(student_get_offers);
+    console.log('student_get_offers', student_get_offers);
+
+    student_get_offers.actions.forEach(async action => 
+      await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/' + action.PIID + '/accept-offer', { method: 'POST'})
+      );
+
+    await new Promise(r => setTimeout(r, 3000));
+    assert.isTrue(node.exporting, 'cred offer not yet accepted by student');
+    assert.isNotEmpty(node.exportingId);
   });
 });

@@ -84,13 +84,30 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         `;
     }
 
+    getAuthHeaders(withJson = false) {
+        let headers =  {};
+        if(withJson) {
+            headers = { 'Content-Type': 'application/ld+json' };
+        }
+        if(this.auth.token) {
+            headers.Authorization = "Bearer " + this.auth.token;
+        } 
+        return headers;
+    }
+
+    getAuthOptions(withJson = false) {
+        let options = {};
+        let headers =  this.getAuthHeaders(withJson);
+        options = {
+            headers: headers
+        };
+        return options;
+    }
+
     async triggerSendOffer(myDid, theirDid, id) {
         const options = {
             method: 'post',
-            headers: {
-                Authorization: "Bearer " + this.auth.token,
-                'Content-Type': 'application/ld+json'
-            },
+            headers: this.getAuthHeaders(true),
             body: JSON.stringify({
                 myDid,
                 theirDid,
@@ -106,10 +123,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         // todo: don't send id via status field.
         const options = {
             method: 'post',
-            headers: {
-                Authorization: "Bearer " + this.auth.token,
-                'Content-Type': 'application/ld+json'
-            },
+            headers: this.getAuthHeaders(true),
             body: JSON.stringify({
                 myDid: piid,
                 theirDid: 'none',
@@ -159,11 +173,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async fetchCourseGrades() {
-        const options = {
-            headers: {
-                Authorization: "Bearer " + this.auth.token
-            }
-        };
+        const options = this.getAuthOptions(false);
         const url = this.entryPointUrl + '/course-grades?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'];

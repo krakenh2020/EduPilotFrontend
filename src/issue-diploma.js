@@ -84,13 +84,30 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         `;
     }
 
+    getAuthHeaders(withJson = false) {
+        let headers =  {};
+        if(withJson) {
+            headers = { 'Content-Type': 'application/ld+json' };
+        }
+        if(this.auth.token) {
+            headers.Authorization = "Bearer " + this.auth.token;
+        } 
+        return headers;
+    }
+
+    getAuthOptions(withJson = false) {
+        let options = {};
+        let headers =  this.getAuthHeaders(withJson);
+        options = {
+            headers: headers
+        };
+        return options;
+    }
+
     async triggerSendOffer(myDid, theirDid, id) {
         const options = {
             method: 'post',
-            headers: {
-                Authorization: "Bearer " + this.auth.token,
-                'Content-Type': 'application/ld+json'
-            },
+            headers: this.getAuthHeaders(true),
             body: JSON.stringify({
                 myDid,
                 theirDid,
@@ -103,13 +120,11 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async acceptRequest(piid, id) {
+        console.log('acceptRequest polling ... ');
         // todo: don't send id via status field.
         const options = {
             method: 'post',
-            headers: {
-                Authorization: "Bearer " + this.auth.token,
-                'Content-Type': 'application/ld+json'
-            },
+            headers: this.getAuthHeaders(true),
             body: JSON.stringify({
                 myDid: piid,
                 theirDid: 'none',
@@ -150,8 +165,9 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async httpGetAsync(url, options) {
+        console.log('httpGetAsync', url);
         let response = await fetch(url, options).then(result => {
-            if (!result.ok) throw result;
+            if (!result.ok) throw Error(url+' '+result.status+' '+result.statusText); 
             return result.json();
         });
 
@@ -159,11 +175,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async fetchDiplomas() {
-        const options = {
-            headers: {
-                Authorization: "Bearer " + this.auth.token
-            }
-        };
+        const options = this.getAuthOptions(false);
         const url = this.entryPointUrl + '/diplomas?page=1';
         const resp = await this.httpGetAsync(url, options);
         return resp['hydra:member'];
