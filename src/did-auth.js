@@ -137,11 +137,15 @@ export class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async fetchDidCommInviteStatus(inviteId) {
-        const options = {
-            headers: {
-                Authorization: "Bearer " + this.auth.token
-            }
-        };
+        let options = {};
+        if(this.auth.token) {
+            options = {
+                headers: {
+                    Authorization: "Bearer " + this.auth.token
+                }
+            };
+            console.log('fetchDidCommInviteStatus.options', options);
+        } 
         const url = this.entryPointUrl + '/did-connections/' + inviteId;
         const resp = await this.httpGetAsync(url, options);
         return resp.invitation;
