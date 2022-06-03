@@ -52,7 +52,7 @@ jobs:
 
       - name: test output
         run: |
-          ls dist/coverage/*
+          ls coverage/*
 
       - name: SonarQube Scan 🚑
         uses: kitabisa/sonarqube-action@master
