@@ -158,6 +158,7 @@ suite('issue-diploma', () => {
     await new Promise(r => setTimeout(r, 2000));
     assert.isFalse(node.exporting, 'cred offer already accepted by student');
 
+    await new Promise(r => setTimeout(r, 3000));
 
     let student_get_offers = await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/actions');
     assert.isNotEmpty(student_get_offers);
@@ -217,6 +218,7 @@ suite('issue-grades', () => {
     await new Promise(r => setTimeout(r, 2000));
     assert.isFalse(node.exporting, 'cred offer already accepted by student');
 
+    await new Promise(r => setTimeout(r, 3000));
 
     let student_get_offers = await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/actions');
     assert.isNotEmpty(student_get_offers);
