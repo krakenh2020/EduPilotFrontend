@@ -66,8 +66,38 @@ suite('did-auth basics', () => {
       assert.fail();
     } catch(e) {
       // this is expected since invite not accepted by student 
+      console.log('invite not accepted by student');
     }
     assert.notExists(inviteStatus);
+
+    let student_receive_invite = await node.httpGetAsync('https://kraken.iaik.tugraz.at/connections/receive-invitation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inviteJson.invitation),
+    });
+    assert.isNotEmpty(student_receive_invite);
+    assert.isNotEmpty(student_receive_invite.connection_id);
+    console.log('student_receive_invite', student_receive_invite);
+
+
+    let student_accept_invite = await node.httpGetAsync('https://kraken.iaik.tugraz.at/connections/' + student_receive_invite.connection_id + '/accept-invitation', {
+      method: 'POST'
+    });
+    assert.isNotEmpty(student_accept_invite);
+    console.log('student_accept_invite', student_accept_invite);
+
+    await new Promise(r => setTimeout(r, 3000));
+
+    try {
+      inviteStatus = await node.fetchDidCommInviteStatus(inviteid);
+    } catch(e) {
+      console.log('invite still not accepted by student: ', e);
+      assert.fail();
+    }
+    assert.isNotEmpty(inviteStatus);
+    console.log('inviteStatus', inviteStatus);
 
   });
 });
