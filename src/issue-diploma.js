@@ -165,9 +165,9 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     async httpGetAsync(url, options) {
-        console.log('httpGetAsync', url);
+        console.log('httpGetAsync', url, options);
         let response = await fetch(url, options).then(result => {
-            if (!result.ok) throw Error(url+' '+result.status+' '+result.statusText); 
+            if (!result.ok) throw Error(url+' status: '+result.status+' '+result.statusText); 
             return result.json();
         });
 

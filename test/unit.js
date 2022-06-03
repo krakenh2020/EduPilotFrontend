@@ -131,6 +131,12 @@ suite('issue-diploma', () => {
 
     assert.isNotEmpty(myDID, 'No wallet app connected?');
     assert.isNotEmpty(theirDID, 'No wallet app connected?');
+
+    assert.notEqual(myDID, 'none');
+    assert.notEqual(theirDID, 'none');
+
+    console.log('myDID', myDID);
+    console.log('theirDID', theirDID);
   });
 
   test('should render', () => {
@@ -149,7 +155,7 @@ suite('issue-diploma', () => {
 
     await node.export('/diplomas/bsc1');
 
-    await new Promise(r => setTimeout(r, 1000));
+    await new Promise(r => setTimeout(r, 2000));
     assert.isFalse(node.exporting, 'cred offer already accepted by student');
 
 
@@ -208,7 +214,7 @@ suite('issue-grades', () => {
 
     await node.export('/course-grades/hcivc');
 
-    await new Promise(r => setTimeout(r, 1000));
+    await new Promise(r => setTimeout(r, 2000));
     assert.isFalse(node.exporting, 'cred offer already accepted by student');
 
 
