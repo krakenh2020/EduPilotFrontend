@@ -14,6 +14,7 @@ suite('did-auth', () => {
     await node.updateComplete;
 
     node.entryPointUrl = 'https://kraken-edu-api.iaik.tugraz.at';
+    //node.entryPointUrl = 'http://localhost:8000';
   });
 
   suiteTeardown(() => {
@@ -46,6 +47,9 @@ suite('did-auth', () => {
   });
 
   test('should fetch an invite from server', async () => {
+    let studentAgent = 'https://kraken.iaik.tugraz.at';
+    //studentAgent = 'http://localhost:8092';
+
     let html1 = node.render();
     assert.isNotEmpty(html1);
 
@@ -77,7 +81,7 @@ suite('did-auth', () => {
     assert.notExists(inviteStatus);
 
 
-    let student_receive_invite = await node.httpGetAsync('https://kraken.iaik.tugraz.at/connections/receive-invitation', {
+    let student_receive_invite = await node.httpGetAsync(studentAgent + '/connections/receive-invitation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +94,7 @@ suite('did-auth', () => {
 
     await new Promise(r => setTimeout(r, 2000));
 
-    let student_accept_invite = await node.httpGetAsync('https://kraken.iaik.tugraz.at/connections/' + student_receive_invite.connection_id + '/accept-invitation', {
+    let student_accept_invite = await node.httpGetAsync(studentAgent + '/connections/' + student_receive_invite.connection_id + '/accept-invitation', {
       method: 'POST'
     });
     assert.isNotEmpty(student_accept_invite);
@@ -105,6 +109,11 @@ suite('did-auth', () => {
 
     let html2 = node.render();
     assert.isNotEmpty(html2);
+
+    const myDID = sessionStorage.getItem('did-comm-MyDID');
+    const theirDID = sessionStorage.getItem('did-comm-TheirDID');
+    console.log('myDID   ', myDID);
+    console.log('theirDID', theirDID);
   });
 });
 
@@ -118,7 +127,12 @@ suite('issue-diploma', () => {
     document.body.appendChild(node);
     await node.updateComplete;
 
+    // for testing:
+    //sessionStorage.setItem('did-comm-MyDID', 'did:peer:1zQmYTqm8uMz3vHH6diYPQ7Vwfr1EeyAXhqtDD6w6CWrukBm');
+    //sessionStorage.setItem('did-comm-TheirDID', 'did:peer:1zQmYbYAf9v2kFpJWpW43gQZBBHoSwKepRu1tCSqmLutyyhU');
+
     node.entryPointUrl = 'https://kraken-edu-api.iaik.tugraz.at';
+    //node.entryPointUrl = 'http://localhost:8000';
   });
 
   suiteTeardown(() => {
@@ -150,6 +164,8 @@ suite('issue-diploma', () => {
   });
 
   test('should export diploma', async () => {
+    let studentAgent = 'https://kraken.iaik.tugraz.at';
+    //studentAgent = 'http://localhost:8092';
     
     assert.isFalse(node.exporting);
 
@@ -160,12 +176,12 @@ suite('issue-diploma', () => {
 
     await new Promise(r => setTimeout(r, 3000));
 
-    let student_get_offers = await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/actions');
+    let student_get_offers = await node.httpGetAsync(studentAgent + '/issuecredential/actions');
     assert.isNotEmpty(student_get_offers);
     console.log('student_get_offers', student_get_offers);
 
     student_get_offers.actions.forEach(async action => 
-      await node.httpGetAsync('https://kraken.iaik.tugraz.at/issuecredential/' + action.PIID + '/accept-offer', { method: 'POST'})
+      await node.httpGetAsync(studentAgent + '/issuecredential/' + action.PIID + '/accept-offer', { method: 'POST'})
       );
 
     await new Promise(r => setTimeout(r, 3000));
@@ -183,6 +199,10 @@ suite('issue-grades', () => {
     node = document.createElement('issue-grades');
     document.body.appendChild(node);
     await node.updateComplete;
+
+    // for testing:
+    //sessionStorage.setItem('did-comm-MyDID', 'did:peer:1zQmYTqm8uMz3vHH6diYPQ7Vwfr1EeyAXhqtDD6w6CWrukBm');
+    //sessionStorage.setItem('did-comm-TheirDID', 'did:peer:1zQmYbYAf9v2kFpJWpW43gQZBBHoSwKepRu1tCSqmLutyyhU');
 
     node.entryPointUrl = 'https://kraken-edu-api.iaik.tugraz.at';
   });
