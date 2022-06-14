@@ -54,11 +54,11 @@ jobs:
         run: |
           ls coverage/*
 
-      - name: SonarQube Scan 🚑
-        uses: kitabisa/sonarqube-action@master
-        with:
-          host: ${{ secrets.SONARQUBE_HOST }}
-          login: ${{ secrets.SONARQUBE_TOKEN }}
+      # - name: SonarQube Scan 🚑
+      #   uses: kitabisa/sonarqube-action@master
+      #   with:
+      #     host: ${{ secrets.SONARQUBE_HOST }}
+      #     login: ${{ secrets.SONARQUBE_TOKEN }}
 
       # - name: Test Full 🔥
       #   run: |
