@@ -137,7 +137,12 @@ export class DidAuth extends ScopedElementsMixin(AdapterLitElement) {
         
         const url = this.entryPointUrl + '/did-connections?page=1';
         const resp = await this.httpGetAsync(url, options);
-        return resp['hydra:member'][0].invitation;
+        let data = resp['hydra:member'][0];
+        if(!('invitation' in data)) {
+            console.log('received invite: ', data);
+            throw Error('Requested invite, received JSON object without "invitation" ...');
+        }
+        return data.invitation;
     }
 
     async fetchDidCommInviteStatus(inviteId) {
