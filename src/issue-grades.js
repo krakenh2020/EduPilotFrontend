@@ -170,8 +170,8 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             method: 'post',
             headers: this.getAuthHeaders(true),
             body: JSON.stringify({
-                "",
-                "",
+                myDid: 'none',
+                theirDid: 'none',
                 status: id
             })
         };
