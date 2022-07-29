@@ -163,6 +163,23 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         }, 1000);
     }
 
+    async exportBatch(id) {
+        console.log('export credential to batch exporter', id);
+
+        const options = {
+            method: 'post',
+            headers: this.getAuthHeaders(true),
+            body: JSON.stringify({
+                "",
+                "",
+                status: id
+            })
+        };
+        const url = this.entryPointUrl + '/credential/export_cred';
+        const resp = await this.httpGetAsync(url, options);
+        return resp;
+    }
+
     async httpGetAsync(url, options) {
         console.log('httpGetAsync', url);
         const result = await fetch(url, options);
@@ -195,7 +212,8 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                         ${d.grade} Grade<br />
                         ${d.achievenmentDate}<br />
                     </div>
-                    <dbp-button type="is-primary" value="Export" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
+                    <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
+                    <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
                 </li>
             `);
 
