@@ -222,28 +222,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        if (!this.exporting) {
-
-            const diplomaList = this.diplomas.map((d) => html`
-                <li>
-                    <div>
-                        <strong>${d.name}</strong><br />
-                        ${d.academicDegree}<br />
-                        ${d.achievenmentDate}<br />
-                    </div>
-                    <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
-                    <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
-                </li>
-            `);
-
-            return html`
-                <ul class="vc-list">
-                    ${diplomaList}
-                </ul>
-            `;
-        }
-
-         if(this.waitingForAccept) {
+        if(this.waitingForAccept) {
             return html`
             <p>
             Credential offer send! Please open the wallet app on your phone and accept the offer.
@@ -251,7 +230,8 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        return html`
+        if (this.exporting) {
+            return html`
             <p>
                 ${i18n.t('issue-diploma.scan')}
             </p>
@@ -259,7 +239,27 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             <span class="success">✔</span><br />
             
             <pre>${JSON.stringify(this.diplomas.filter((d) => d['@id'] === this.exportingId)[0], null, 2)}</pre>
+            `;
+        }
+
+        const diplomaList = this.diplomas.map((d) => html`
+            <li>
+                <div>
+                    <strong>${d.name}</strong><br />
+                    ${d.academicDegree}<br />
+                    ${d.achievenmentDate}<br />
+                </div>
+                <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
+                <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
+            </li>
+        `);
+
+        return html`
+            <ul class="vc-list">
+                ${diplomaList}
+            </ul>
         `;
+        
     }
 }
 

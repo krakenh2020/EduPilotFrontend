@@ -216,29 +216,6 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        if (!this.exporting) {
-            const coursesList = this.courseGrades.map((d) => html`
-                <li>
-                    <div>
-                        <strong>${d.name}</strong><br />
-                        ${d.credits} ECTS<br />
-                        ${d.grade} Grade<br />
-                        ${d.achievenmentDate}<br />
-                    </div>
-                    <div>
-                        <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" /> <br />
-                        <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
-                    </div>
-                </li>
-                `);
-
-            return html`
-                <ul class="vc-list">
-                    ${coursesList}
-                </ul>
-            `;
-        }
-
         if(this.waitingForAccept) {
             return html`
             <p>
@@ -247,7 +224,8 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        return html`
+        if (this.exporting) {
+            return html`
             <p>
                 ${i18n.t('issue-grades.scan')}
             </p>
@@ -256,6 +234,29 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
 
             <pre>${JSON.stringify(this.courseGrades.filter((d) => d['@id'] === this.exportingId)[0], null, 2)}</pre>
             `;
+        }
+        
+        const coursesList = this.courseGrades.map((d) => html`
+            <li>
+                <div>
+                    <strong>${d.name}</strong><br />
+                    ${d.credits} ECTS<br />
+                    ${d.grade} Grade<br />
+                    ${d.achievenmentDate}<br />
+                </div>
+                <div>
+                    <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" /> <br />
+                    <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
+                </div>
+            </li>
+            `);
+
+        return html`
+            <ul class="vc-list">
+                ${coursesList}
+            </ul>
+        `;
+       
     }
 }
 
