@@ -225,6 +225,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         if(this.waitingForAccept) {
             return html`
             <p>
+            <dbp-mini-spinner class="spinner" style="font-size: 3em"></dbp-mini-spinner>
             Credential offer send! Please open the wallet app on your phone and accept the offer.
             </p>
             `;
