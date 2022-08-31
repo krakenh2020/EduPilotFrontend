@@ -246,8 +246,8 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                     ${d.achievenmentDate}<br />
                 </div>
                 <div>
-                    <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" /> <br />
-                    <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
+                    <dbp-button type="is-primary" value="Export to Wallet" @click="${() => this.export(d['@id'])}" /> <br />
+                    <dbp-button type="is-info" value="Provide to University" @click="${() => this.exportBatch(d['@id'])}" />
                 </div>
             </li>
             `);
