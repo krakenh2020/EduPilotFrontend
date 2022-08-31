@@ -249,8 +249,10 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
                     ${d.academicDegree}<br />
                     ${d.achievenmentDate}<br />
                 </div>
-                <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
-                <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
+                <div>
+                    <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" /> <br />
+                    <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
+                </div>
             </li>
         `);
 
