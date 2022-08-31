@@ -108,7 +108,7 @@
     entry-point-url="<%= entryPointURL %>"
     base-path="<%= getUrl('') %>"
     requested-login-status
-    keycloak-config='{"url": "<%= keyCloakBaseURL %>", "realm": "tugraz", "clientId": "<%= keyCloakClientId %>", "silentCheckSsoRedirectUri": "<%= getUrl('silent-check-sso.html') %>" }'
+    keycloak-config='{"url": "<%= keyCloakBaseURL %>", "realm": "<%= keyCloakRealm %>", "clientId": "<%= keyCloakClientId %>", "silentCheckSsoRedirectUri": "<%= getUrl('silent-check-sso.html') %>" }'
     matomo-url="<%= matomoUrl %>"
     matomo-site-id="<%= matomoSiteId %>"
     shell-name="KRAKEN Education Pilot Demo"

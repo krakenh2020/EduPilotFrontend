@@ -37,6 +37,7 @@ let basePath = '';
 let entryPointURL = '';
 let keyCloakServer = '';
 let keyCloakBaseURL = '';
+let keyCloakRealm = '';
 let keyCloakClientId = '';
 let matomoSiteId = 131;
 let useTerser = buildFull;
@@ -49,6 +50,7 @@ switch (build) {
     entryPointURL = 'http://127.0.0.1:8001';
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
+    keyCloakRealm = "tugraz-vpu";
     keyCloakClientId = 'auth-dev-mw-frontend-local';
     break;
   case 'bs':
@@ -56,6 +58,7 @@ switch (build) {
     entryPointURL = 'https://bs-local.com:8000';
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
+    keyCloakRealm = "tugraz-vpu";
     keyCloakClientId = 'auth-dev-mw-frontend-local';
     break;
   case 'kraken':
@@ -63,6 +66,7 @@ switch (build) {
     entryPointURL = 'https://krakenh2020.github.io';
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
+    keyCloakRealm = "tugraz-vpu";
     //keyCloakClientId = 'auth-iaik-kraken-dev-github';
     keyCloakClientId = 'auth-dev-mw-frontend-local';
     break;
@@ -71,6 +75,7 @@ switch (build) {
     entryPointURL = 'http://localhost:8000'; // UNIVERSITY_APIPLATFORM_PORT
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
+    keyCloakRealm = "tugraz-vpu";
     //keyCloakClientId = 'auth-iaik-kraken-dev-local';
     keyCloakClientId = 'auth-dev-mw-frontend-local';
     break;
@@ -80,6 +85,7 @@ switch (build) {
     entryPointURL = 'https://kraken-edu-api.iaik.tugraz.at'; // "kraken-edu-api.{{ nginx_zone }}"
     keyCloakServer = 'auth-demo.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
+    keyCloakRealm = "tugraz";
     //keyCloakClientId = 'auth-iaik-kraken-dev-local';
     keyCloakClientId = 'kraken_edu_iaik_tugraz_at';
     break;
@@ -201,6 +207,7 @@ export default (async () => {
                 basePath: basePath,
                 keyCloakServer: keyCloakServer,
                 keyCloakBaseURL: keyCloakBaseURL,
+                keyCloakRealm: keyCloakRealm,
                 keyCloakClientId: keyCloakClientId,
                 environment: build,
                 matomoUrl: matomoUrl,
