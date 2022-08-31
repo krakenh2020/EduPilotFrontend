@@ -47,7 +47,7 @@ let checkLicenses = buildFull;
 switch (build) {
   case 'local':
     basePath = '/dist/';
-    entryPointURL = 'http://127.0.0.1:8001';
+    entryPointURL = 'http://127.0.0.1:8084';
     keyCloakServer = 'auth-dev.tugraz.at';
     keyCloakBaseURL = 'https://' + keyCloakServer + '/auth';
     keyCloakRealm = "tugraz-vpu";
