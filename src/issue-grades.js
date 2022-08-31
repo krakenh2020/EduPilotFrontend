@@ -31,6 +31,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         return {
             ...super.properties,
             lang: { type: String },
+            waitingForAccept: { type: Boolean, attribute: false },
             exporting: { type: Boolean, attribute: false },
             exportingId: { type: String },
             courseGrades: { type: Array },
@@ -150,6 +151,9 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         console.log('triggerSendOffer', res);
         const piid = JSON.parse(res.myDid).piid;
 
+        // notify user to accept credential offer on the phone
+        this.waitingForAccept = true;
+
         const invervalId = setInterval(async () => {
             const res2 = await this.acceptRequest(piid, id);
             if (res2.myDid !== '') {
@@ -157,6 +161,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
 
                 clearInterval(invervalId);
 
+                this.waitingForAccept = false;
                 this.exporting = true;
                 this.exportingId = id;
             }
@@ -203,6 +208,14 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
+        if (!sessionStorage.getItem('did-comm-MyDID') || !sessionStorage.getItem('did-comm-TheirDID')) {
+            return html`
+            <p>
+            No wallet app connected. Please connect your wallet first.
+            </p>
+            `;
+        }
+
         if (!this.exporting) {
             const coursesList = this.courseGrades.map((d) => html`
                 <li>
@@ -212,15 +225,25 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                         ${d.grade} Grade<br />
                         ${d.achievenmentDate}<br />
                     </div>
-                    <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" />
-                    <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
+                    <div>
+                        <dbp-button type="is-primary" value="Export to Wallet" no-spinner-on-click="true" @click="${() => this.export(d['@id'])}" /> <br />
+                        <dbp-button type="is-primary" value="Provide to University" no-spinner-on-click="true" @click="${() => this.exportBatch(d['@id'])}" />
+                    </div>
                 </li>
-            `);
+                `);
 
             return html`
                 <ul class="vc-list">
                     ${coursesList}
                 </ul>
+            `;
+        }
+
+        if(this.waitingForAccept) {
+            return html`
+            <p>
+            Credential offer send! Please open the wallet app on your phone and accept the offer.
+            </p>
             `;
         }
 
@@ -232,7 +255,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             <span class="success">✔</span><br />
 
             <pre>${JSON.stringify(this.courseGrades.filter((d) => d['@id'] === this.exportingId)[0], null, 2)}</pre>
-        `;
+            `;
     }
 }
 

@@ -31,6 +31,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         return {
             ...super.properties,
             lang: { type: String },
+            waitingForAccept: { type: Boolean, attribute: false },
             exporting: { type: Boolean, attribute: false },
             exportingId: { type: String },
             diplomas: { type: Array },
@@ -151,6 +152,9 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         console.log('triggerSendOffer', res);
         const piid = JSON.parse(res.myDid).piid;
 
+        // notify user to accept credential offer on the phone
+        this.waitingForAccept = true;
+
         const invervalId = setInterval(async () => {
             const res2 = await this.acceptRequest(piid, id);
             if (res2.myDid !== '') {
@@ -158,6 +162,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
 
                 clearInterval(invervalId);
 
+                this.waitingForAccept = false;
                 this.exporting = true;
                 this.exportingId = id;
             }
@@ -209,6 +214,14 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
+        if (!sessionStorage.getItem('did-comm-MyDID') || !sessionStorage.getItem('did-comm-TheirDID')) {
+            return html`
+            <p>
+            No wallet app connected. Please connect your wallet first.
+            </p>
+            `;
+        }
+
         if (!this.exporting) {
 
             const diplomaList = this.diplomas.map((d) => html`
@@ -227,6 +240,14 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
                 <ul class="vc-list">
                     ${diplomaList}
                 </ul>
+            `;
+        }
+
+         if(this.waitingForAccept) {
+            return html`
+            <p>
+            Credential offer send! Please open the wallet app on your phone and accept the offer.
+            </p>
             `;
         }
 
