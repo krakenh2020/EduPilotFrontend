@@ -1,6 +1,6 @@
 {
   "name": "vc4sm-frontend",
-  "version": "0.1.0",
+  "version": "0.2022.09",
   "description": "A frontend for an API that provides education verifiable credentials to university students.",
   "main": "src/vc4sm-frontend.js",
   "license": "LGPL-2.1-or-later",
