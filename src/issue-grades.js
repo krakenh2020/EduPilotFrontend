@@ -85,12 +85,12 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         `;
     }
 
-    getAuthHeaders(withJson = false) {
+    getAuthHeaders(withJson = false, ignoreAuth = false) {
         let headers =  {};
         if(withJson) {
             headers = { 'Content-Type': 'application/ld+json' };
         }
-        if(this.auth.token) {
+        if(this.auth.token && !ignoreAuth) {
             headers.Authorization = "Bearer " + this.auth.token;
         } 
         return headers;
@@ -168,20 +168,36 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         }, 1000);
     }
 
-    async exportBatch(id) {
+    async exportBatch(id, button) {
         console.log('export credential to batch exporter', id);
 
         const options = {
             method: 'post',
-            headers: this.getAuthHeaders(true),
+            headers: this.getAuthHeaders(true, true),
             body: JSON.stringify({
                 myDid: 'none',
                 theirDid: 'none',
                 status: id
             })
         };
+
         const url = this.entryPointUrl + '/credential/export_cred';
-        const resp = await this.httpGetAsync(url, options);
+
+        try {
+            const resp = await this.httpGetAsync(url, options);
+        } catch(e) {
+            console.error("export credential error:", e);
+            button.stop();
+            button.disabled = true;
+            button.type = "is-danger";
+            return;
+        }
+
+        console.log('export credential to batch exporter done');
+        button.stop();
+        button.disabled = true;
+        button.type = "is-success";
+
         return resp;
     }
 
@@ -246,8 +262,8 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                     ${d.achievenmentDate}<br />
                 </div>
                 <div>
-                    <dbp-button type="is-primary" value="Export to SSI Wallet" @click="${() => this.export(d['@id'])}"> </dbp-button> </br>
-                    <dbp-button type="is-info"    value="Allow     Computation" @click="${() => this.exportBatch(d['@id'])}"></dbp-button>
+                    <dbp-button type="is-primary" value="Export to SSI Wallet" @click="${() => this.export(d['@id'])}"></dbp-button> </br>
+                    <dbp-button type="is-info"    value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}"></dbp-button>
                 </div>
             </li>
             `);
