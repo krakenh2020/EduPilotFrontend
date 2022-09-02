@@ -242,8 +242,12 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             return html`
             <p>
             <dbp-mini-spinner class="spinner" style="font-size: 3em"></dbp-mini-spinner>
-            Credential offer send! Please open the wallet app on your phone and accept the offer.
+            Credential offer send! 
             </p>
+            <ol>
+                <li>Please open the SSI wallet app (e.g. ledger uSelf) on your phone.</li>
+                <li>Go to the "Credentials" tab and accept the credential offer.</li>
+            </ol>
             `;
         }
 
@@ -254,8 +258,6 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             </p>
 
             <span class="success">✔</span><br />
-            
-            <pre>${JSON.stringify(this.diplomas.filter((d) => d['@id'] === this.exportingId)[0], null, 2)}</pre>
             `;
         }
 
