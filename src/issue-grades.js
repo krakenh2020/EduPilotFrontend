@@ -192,6 +192,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             button.stop();
             button.disabled = true;
             button.type = "is-danger";
+            localStorage.setItem('batch' + id, 'is-danger');
             return;
         }
 
@@ -199,8 +200,13 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
         button.stop();
         button.disabled = true;
         button.type = "is-success";
+        localStorage.setItem('batch' + id, 'is-success');
 
         return resp;
+    }
+
+    async getExportButtonType(id) {
+        return localStorage.getItem('batch' + id) || 'is-info';
     }
 
     async httpGetAsync(url, options) {
@@ -267,7 +273,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                 </div>
                 <div>
                     <dbp-button type="is-primary" value="Export to SSI Wallet" @click="${() => this.export(d['@id'])}"></dbp-button> </br>
-                    <dbp-button type="is-info"    value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}"></dbp-button>
+                    <dbp-button type="${this.getExportButtonType(d['@id'])}"    value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}"></dbp-button>
                 </div>
             </li>
             `);
