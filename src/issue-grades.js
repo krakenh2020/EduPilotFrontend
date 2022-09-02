@@ -164,6 +164,8 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                 this.waitingForAccept = false;
                 this.exporting = true;
                 this.exportingId = id;
+
+                setTimeout(function(){ this.exporting = false; }, 2000);
             }
         }, 1000);
     }
