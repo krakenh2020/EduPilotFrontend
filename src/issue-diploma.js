@@ -41,11 +41,11 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+        
         this.fetchDiplomas().then((diplomas) => {
                         this.diplomas = diplomas;
                     });
-        
-        super.connectedCallback();
     }
 
     update(changedProperties) {

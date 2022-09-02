@@ -41,11 +41,11 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
     }
 
     connectedCallback() {
+        super.connectedCallback();
+        
         this.fetchCourseGrades().then((grades) => {
                         this.courseGrades = grades;
                     });
-        
-        super.connectedCallback();
     }
 
     update(changedProperties) {
