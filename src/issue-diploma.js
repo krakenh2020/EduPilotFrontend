@@ -206,7 +206,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         }
     }
 
-    async getExportButtonType(id) {
+    getExportButtonType(id) {
         return localStorage.getItem('batch' + id) || 'is-info';
     }
 
