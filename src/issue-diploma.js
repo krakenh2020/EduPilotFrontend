@@ -269,6 +269,12 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
+        if(!this.diplomas) {
+            return html`
+                  loading...
+                `;
+        }
+
         const diplomaList = this.diplomas.map((d) => html`
             <li>
                 <div>

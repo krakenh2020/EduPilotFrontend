@@ -187,7 +187,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
 
         try {
             const resp = await this.httpGetAsync(url, options);
-            
+
             console.log('export credential to batch exporter done', resp);
             button.stop();
             button.disabled = true;
@@ -261,6 +261,12 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
 
             <span class="success">✔</span><br />
             `;
+        }
+
+        if(!this.courseGrades) {
+            return html`
+                  loading...
+                `;
         }
         
         const coursesList = this.courseGrades.map((d) => html`
