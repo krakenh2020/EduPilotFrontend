@@ -267,11 +267,11 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        // if(!this.courseGrades) {
-        //     return html`
-        //           loading...
-        //         `;
-        // }
+        if(!this.courseGrades) {
+            return html`
+                  loading...
+                `;
+        }
         
         const coursesList = this.courseGrades.map((d) => html`
             <li>
@@ -283,7 +283,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                 </div>
                 <div>
                     <dbp-button type="is-primary" value="Export to SSI Wallet" @click="${() => this.export(d['@id'])}"></dbp-button> </br>
-                    <dbp-button type="${this.getExportButtonType(d['@id'])}" ${this.getExportButtonDisabled(d['@id'])} value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}"></dbp-button>
+                    <dbp-button type="${this.getExportButtonType(d['@id'])}" value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}" ${this.getExportButtonDisabled(d['@id'])}></dbp-button>
                 </div>
             </li>
             `);

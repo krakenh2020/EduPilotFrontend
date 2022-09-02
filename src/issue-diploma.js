@@ -273,11 +273,11 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        // if(!this.diplomas) {
-        //     return html`
-        //           loading...
-        //         `;
-        // }
+        if(!this.diplomas) {
+            return html`
+                  loading...
+                `;
+        }
 
         const diplomaList = this.diplomas.map((d) => html`
             <li>
@@ -288,7 +288,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
                 </div>
                 <div>
                     <dbp-button type="is-primary" value="Export to SSI Wallet" @click="${() => this.export(d['@id'])}"></dbp-button> </br>
-                    <dbp-button type="${this.getExportButtonType(d['@id'])}" ${this.getExportButtonDisabled(d['@id'])} value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}"></dbp-button>
+                    <dbp-button type="${this.getExportButtonType(d['@id'])}" value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}" ${this.getExportButtonDisabled(d['@id'])}></dbp-button>
                 </div>
             </li>
         `);
