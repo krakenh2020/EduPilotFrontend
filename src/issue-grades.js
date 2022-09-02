@@ -238,7 +238,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             return html`
             <p>
             <dbp-mini-spinner class="spinner" style="font-size: 3em"></dbp-mini-spinner>
-            Credential offer send! 
+            Credential offer sens! 
             </p>
             <ol>
                 <li>Please open the SSI wallet app (e.g. ledger uSelf) on your phone.</li>
