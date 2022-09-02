@@ -196,7 +196,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             button.disabled = true;
             button.type = "is-success";
             localStorage.setItem('batch-type-' + id, 'is-success');
-            localStorage.setItem('batch-disabled-' + id, "disabled");
+            localStorage.setItem('batch-disabled-' + id, true);
 
             return resp;
         } catch(e) {
@@ -213,7 +213,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
         return localStorage.getItem('batch-type-' + id) || 'is-info';
     }
     getExportButtonDisabled(id) {
-        return localStorage.getItem('batch-disabled-' + id) || "";
+        return localStorage.getItem('batch-disabled-' + id) || false;
     }
 
      async httpGetAsync(url, options) {
@@ -290,7 +290,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
                 </div>
                 <div>
                     <dbp-button type="is-primary" value="Export to SSI Wallet" @click="${() => this.export(d['@id'])}"></dbp-button> </br>
-                    <dbp-button type="${this.getExportButtonType(d['@id'])}" value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}" ${this.getExportButtonDisabled(d['@id'])}></dbp-button>
+                    <dbp-button type="${this.getExportButtonType(d['@id'])}" value="Allow     Computation" @click="${(e) => this.exportBatch(d['@id'], e.target)}" ?disabled="${this.getExportButtonDisabled(d['@id'])}"></dbp-button>
                 </div>
             </li>
         `);
