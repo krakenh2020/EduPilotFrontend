@@ -188,6 +188,14 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
 
         try {
             const resp = await this.httpGetAsync(url, options);
+
+            console.log('export credential to batch exporter done', resp);
+            button.stop();
+            button.disabled = true;
+            button.type = "is-success";
+            localStorage.setItem('batch' + id, 'is-success');
+
+            return resp;
         } catch(e) {
             console.error("export credential error:", e);
             button.stop();
@@ -196,14 +204,6 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             localStorage.setItem('batch' + id, 'is-danger');
             return;
         }
-
-        console.log('export credential to batch exporter done');
-        button.stop();
-        button.disabled = true;
-        button.type = "is-success";
-        localStorage.setItem('batch' + id, 'is-success');
-
-        return resp;
     }
 
     async getExportButtonType(id) {
