@@ -267,11 +267,11 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        if(!this.courseGrades) {
-            return html`
-                  loading...
-                `;
-        }
+        // if(!this.courseGrades) {
+        //     return html`
+        //           loading...
+        //         `;
+        // }
         
         const coursesList = this.courseGrades.map((d) => html`
             <li>
