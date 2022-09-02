@@ -42,7 +42,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
 
     connectedCallback() {
         super.connectedCallback();
-        
+
         this.fetchCourseGrades().then((grades) => {
                         this.courseGrades = grades;
                     });
@@ -55,9 +55,7 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
                     i18n.changeLanguage(this.lang);
                     break;
                 case "entryPointUrl":
-                    this.fetchCourseGrades().then((grades) => {
-                        this.courseGrades = grades;
-                    });
+                    console.log(propName + ' changed from ' + oldValue);
                     break;
             }
         });

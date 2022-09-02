@@ -42,7 +42,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
 
     connectedCallback() {
         super.connectedCallback();
-        
+
         this.fetchDiplomas().then((diplomas) => {
                         this.diplomas = diplomas;
                     });
@@ -55,9 +55,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
                     i18n.changeLanguage(this.lang);
                     break;
                 case "entryPointUrl":
-                    this.fetchDiplomas().then((diplomas) => {
-                        this.diplomas = diplomas;
-                    });
+                    console.log(propName + ' changed from ' + oldValue);
                     break;
             }
         });
