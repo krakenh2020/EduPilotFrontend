@@ -192,7 +192,8 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             button.stop();
             button.disabled = true;
             button.type = "is-success";
-            localStorage.setItem('batch' + id, 'is-success');
+            localStorage.setItem('batch-type-' + id, 'is-success');
+            localStorage.setItem('batch-disabled-' + id, "true");
 
             return resp;
         } catch(e) {
@@ -200,14 +201,13 @@ class IssueGrades extends ScopedElementsMixin(AdapterLitElement) {
             button.stop();
             button.disabled = true;
             button.type = "is-danger";
-            localStorage.setItem('batch' + id, 'is-danger');
-            localStorage.setItem('batch-disabled-' + id, "true");
+            localStorage.setItem('batch-type-' + id, 'is-danger');
             return;
         }
     }
 
     getExportButtonType(id) {
-        return localStorage.getItem('batch' + id) || 'is-info';
+        return localStorage.getItem('batch-type-' + id) || 'is-info';
     }
     getExportButtonDisabled(id) {
         return localStorage.getItem('batch-disabled-' + id) || "false";

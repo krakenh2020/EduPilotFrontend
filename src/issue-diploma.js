@@ -194,6 +194,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             button.disabled = true;
             button.type = "is-success";
             localStorage.setItem('batch-type-' + id, 'is-success');
+            localStorage.setItem('batch-disabled-' + id, "true");
 
             return resp;
         } catch(e) {
@@ -202,7 +203,6 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             button.disabled = true;
             button.type = "is-danger";
             localStorage.setItem('batch-type-' + id, 'is-danger');
-            localStorage.setItem('batch-disabled-' + id, "true");
             return;
         }
     }
