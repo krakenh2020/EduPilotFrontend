@@ -140,8 +140,8 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
     async export(id) {
         console.log('export diploma', id);
 
-        const myDID = sessionStorage.getItem('did-comm-MyDID');
-        const theirDID = sessionStorage.getItem('did-comm-TheirDID');
+        const myDID = localStorage.getItem('did-comm-MyDID');
+        const theirDID = localStorage.getItem('did-comm-TheirDID');
 
         if (!myDID || !theirDID) {
             alert('No wallet app connected. Please connect your wallet first.');
@@ -232,7 +232,7 @@ class IssueDiploma extends ScopedElementsMixin(AdapterLitElement) {
             `;
         }
 
-        if (!sessionStorage.getItem('did-comm-MyDID') || !sessionStorage.getItem('did-comm-TheirDID')) {
+        if (!localStorage.getItem('did-comm-MyDID') || !localStorage.getItem('did-comm-TheirDID')) {
             return html`
             <p>
             No wallet app connected. Please connect your wallet first.
